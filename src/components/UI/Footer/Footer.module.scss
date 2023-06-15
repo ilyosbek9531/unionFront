@@ -1,18 +1,59 @@
+@import "styles/unit.scss";
+
 .footer {
   width: 100%;
-  height: 200px;
-  background-color: #f6f6f6;
-  padding: 40px 0;
+  background: #222831;
+  padding-top: rem(40);
+  color: #fff;
   .box {
-    display: flex;
+    @include justify-content-between;
     .logo {
       margin-right: 40px;
-    }
-    ul {
-      list-style: none;
-      row-gap: 20px;
       display: flex;
-      flex-direction: column;
+      gap: rem(72);
+      span {
+        width: 40%;
+      }
     }
+
+    &__right {
+      display: flex;
+      gap: rem(98);
+
+      &__right {
+        @include direction-column;
+        gap: rem(20);
+        white-space: nowrap;
+        h5 {
+          font-weight: 600;
+          font-size: 17.7693px;
+          line-height: 25px;
+          color: rgba(255, 255, 255, 0.87);
+        }
+
+        &__icons {
+          @include align-items-center;
+          gap: rem(28);
+
+          &__icon {
+            cursor: pointer;
+          }
+        }
+      }
+
+      ul {
+        list-style: none;
+        row-gap: 20px;
+        @include direction-column;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  &__bottom {
+    padding: rem(20) 0;
+    text-align: center;
+    border-top: 1px solid #ffffff;
+    margin-top: rem(80);
   }
 }

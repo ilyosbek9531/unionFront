@@ -1,0 +1,51 @@
+@import "styles/unit.scss";
+
+.card {
+  &__img {
+    width: 100%;
+    height: rem(250);
+    position: relative;
+    border: 1.21912px solid #e0e0e0;
+    border-radius: 9.75298px;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 9.75298px;
+    }
+    &__like {
+      top: rem(18);
+      right: rem(18);
+      position: absolute;
+      cursor: pointer;
+    }
+  }
+
+  &__info {
+    border-width: 0px 1.21912px 1.21912px 1.21912px;
+    border-style: solid;
+    border-color: #e9e9e9;
+    border-radius: 9.75298px;
+    padding: 13.4103px;
+    @include direction-column;
+    gap: rem(12);
+
+    &__items {
+      @include align-items-center;
+      justify-content: space-between;
+
+      &__item {
+        @include direction-column;
+        justify-content: space-between;
+        gap: rem(12);
+      }
+      &__basket {
+        width: 49px;
+        height: 49px;
+        border: 1.21912px solid #00adb5;
+        border-radius: 43.8884px;
+        @include element-center;
+        cursor: pointer;
+      }
+    }
+  }
+}

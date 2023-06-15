@@ -1,0 +1,6 @@
+@import "styles/unit.scss";
+
+.main {
+  @include direction-column;
+  gap: rem(100);
+}

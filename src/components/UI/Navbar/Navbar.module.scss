@@ -1,0 +1,110 @@
+@import "styles/unit.scss";
+
+.menu {
+  transition: 3s;
+  @media (max-width: 768px) {
+    display: none;
+  }
+  .list {
+    @include align-items-center;
+    gap: rem(40);
+
+    .item {
+      @include align-items-center;
+      gap: rem(4);
+    }
+  }
+}
+.item {
+  list-style: none;
+  cursor: pointer;
+
+  svg {
+    transition: all 0.4s linear;
+    transform: rotate(0deg);
+  }
+  &:hover {
+    svg {
+      transform: rotate(-180deg);
+    }
+    .childList {
+      @include direction-column;
+      padding-top: 28px;
+
+      ul {
+        @include direction-column;
+        z-index: 1000 !important;
+      }
+    }
+  }
+  a {
+    transition: all 0.3s ease;
+    svg {
+      margin-left: 16px;
+    }
+  }
+  .childList {
+    display: none;
+    perspective: 1000px;
+    position: absolute;
+    top: 40px;
+    z-index: 99;
+    cursor: pointer;
+    animation: downOut 400ms ease-in-out forwards;
+    transform-origin: center center;
+    ul {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      @include direction-column;
+      padding: rem(12);
+      .childItems {
+        &:first-child {
+          border-bottom: 1px solid #e0e0e0;
+          padding-bottom: 12px;
+        }
+        &:last-child {
+          margin-top: 12px;
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+          border-radius: 12px;
+          position: relative;
+          background-color: transparent;
+          font-weight: 400;
+          line-height: 24px;
+          color: #252c32;
+          &:hover {
+            svg {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+          svg {
+            opacity: 0;
+            color: #fff;
+            position: absolute;
+            right: 5px;
+            font-size: 16px;
+            transform: translateX(-20px);
+            transition: all 0.3s ease;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes downOut {
+  0% {
+    transform: translateZ(200px) transLateY(40px);
+  }
+  80% {
+    transform: translateZ(-10px) transLateY(0px);
+  }
+  100% {
+    transform: translateZ(0px) transLateY(0px);
+  }
+}
