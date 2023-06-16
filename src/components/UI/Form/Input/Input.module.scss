@@ -1,0 +1,43 @@
+@import "styles/unit.scss";
+
+.inputWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: #f6f8f9;
+  height: rem(48);
+  padding: rem(12) rem(16) !important;
+  transition: border 0.25s linear;
+  overflow: hidden;
+  column-gap: rem(12);
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+  flex-grow: 1;
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    transition: border 0.25s linear;
+    border: 1px solid var(--primary-color);
+  }
+  input {
+    background-color: #f6f8f9;
+    font-weight: 400;
+    font-size: rem(14);
+    line-height: rem(24);
+    outline: none;
+    height: rem(48);
+    width: 100%;
+    color: #000;
+    padding: 0 !important;
+    border: none;
+    caret-color: var(--primary-color);
+    &::placeholder {
+      color: #6e7c87;
+      font-weight: 400;
+      font-size: rem(14);
+      line-height: rem(24);
+    }
+  }
+}

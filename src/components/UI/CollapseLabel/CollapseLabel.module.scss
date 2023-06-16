@@ -1,0 +1,14 @@
+@import "styles/unit.scss";
+
+.readMore {
+  .text {
+    text-align: center;
+    cursor: pointer;
+    span {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 27px;
+      color: var(--primary-color);
+    }
+  }
+}

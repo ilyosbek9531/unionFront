@@ -1,0 +1,11 @@
+@import "styles/unit.scss";
+
+.content {
+  @include align-items-center;
+  gap: rem(20);
+
+  &__select {
+    max-width: rem(200);
+    min-width: rem(200);
+  }
+}

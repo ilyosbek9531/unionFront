@@ -1,0 +1,21 @@
+@import "styles/unit.scss";
+
+.content {
+  @include justify-content-between;
+  gap: rem(20);
+
+  &__filter {
+    max-width: rem(306);
+    min-width: rem(306);
+    background: #ffffff;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    padding: 15px 20px;
+    height: min-content;
+  }
+  &__right {
+    width: 100%;
+    @include direction-column;
+    gap: rem(20);
+  }
+}

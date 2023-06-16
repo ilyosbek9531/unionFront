@@ -59,6 +59,7 @@ h6 {
 
 .custom-swiper {
   height: rem(500);
+  border-radius: 10px;
 
   @media (max-width: 768px) {
     height: 100%;
@@ -193,4 +194,11 @@ h6 {
       height: rem(275);
     }
   }
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  display: none;
 }

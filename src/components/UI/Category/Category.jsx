@@ -3,7 +3,38 @@ import styles from "./Category.module.scss";
 import { Container } from "@mui/material";
 import { createCategoryArr } from "utils/createCategoryArr";
 
-const category = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const category = [
+  {
+    id: 1,
+    img: "/images/category1.png",
+    name: "Jemferlar",
+  },
+  {
+    id: 2,
+    img: "/images/category1.png",
+    name: "Jemferlar",
+  },
+  {
+    id: 3,
+    img: "/images/category1.png",
+    name: "Jemferlar",
+  },
+  {
+    id: 4,
+    img: "/images/category1.png",
+    name: "Jemferlar",
+  },
+  {
+    id: 5,
+    img: "/images/category1.png",
+    name: "Jemferlar",
+  },
+  {
+    id: 6,
+    img: "/images/category1.png",
+    name: "Jemferlar",
+  },
+];
 
 const Category = () => {
   return (
@@ -15,7 +46,8 @@ const Category = () => {
             <div className={styles.category__list}>
               {item?.map((elem, index) => (
                 <div className={styles[`category__list__${index + 1}`]}>
-                  {elem}
+                  <img src={elem.img} alt="categoryImg" />
+                  <span>{elem.name}</span>
                 </div>
               ))}
             </div>

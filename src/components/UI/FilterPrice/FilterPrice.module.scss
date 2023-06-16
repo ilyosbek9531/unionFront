@@ -1,0 +1,12 @@
+@import "styles/unit.scss";
+
+.wrapper {
+  .rangeInputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: rem(16);
+    gap: rem(12);
+    color: #6e7c87;
+  }
+}

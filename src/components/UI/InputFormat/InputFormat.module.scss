@@ -1,0 +1,43 @@
+@import "styles/unit.scss";
+
+.inputWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: rem(48);
+  transition: border 0.25s linear;
+  overflow: hidden;
+  column-gap: rem(12);
+  width: 100%;
+  background: #ffffff;
+  border-radius: 10px;
+
+  border: 1px solid #d9d9d9;
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    transition: border 0.25s linear;
+    border: 1px solid var(--primary-color);
+  }
+  input {
+    background-color: #f6f8f9;
+    color: #6e7c87;
+    font-weight: 400;
+    font-size: rem(14);
+    line-height: rem(24);
+    outline: none;
+    height: rem(48);
+    width: 100%;
+    padding: rem(12) rem(16) !important;
+    border: none;
+    caret-color: var(--primary-color);
+
+    &::placeholder {
+      color: #6e7c87;
+      font-weight: 400;
+      font-size: rem(14);
+      line-height: rem(24);
+    }
+  }
+}

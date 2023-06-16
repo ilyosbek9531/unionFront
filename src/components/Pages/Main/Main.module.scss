@@ -1,6 +1,29 @@
 @import "styles/unit.scss";
 
+.wrapper {
+  padding-bottom: 40px;
+}
 .main {
   @include direction-column;
   gap: rem(100);
+}
+
+.icon__wrapper {
+  position: sticky;
+  bottom: rem(40);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 99;
+}
+.icon {
+  @include element-center;
+  background: var(--primary-color);
+  width: rem(48);
+  height: rem(48);
+  border-radius: 50%;
+  border: 1px solid #fff;
+  cursor: pointer;
+  position: relative;
+  left: 100%;
+  transform: translate(-100%, 0%);
 }
