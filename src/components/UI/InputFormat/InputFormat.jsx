@@ -44,8 +44,23 @@ export default function InputFormat({
                         .replace(/,/g, " ")
                 }
                 onChange={(e) => {
-                  onChange(e);
-                  customOnChange(e);
+                  const currentValue = e.target.value;
+                  const lastLetter = currentValue[currentValue.length - 1];
+                  const checker =
+                    lastLetter == 0 ||
+                    lastLetter == 1 ||
+                    lastLetter == 2 ||
+                    lastLetter == 3 ||
+                    lastLetter == 4 ||
+                    lastLetter == 5 ||
+                    lastLetter == 6 ||
+                    lastLetter == 7 ||
+                    lastLetter == 8 ||
+                    lastLetter == 9;
+                  if (checker || !currentValue.length) {
+                    onChange(e);
+                    customOnChange(e);
+                  }
                 }}
               />
             </div>

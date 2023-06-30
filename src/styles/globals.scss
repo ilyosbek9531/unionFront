@@ -1,5 +1,6 @@
 @import "unit";
 @import "../../public/fonts/font.css";
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
 
 :root {
   --primary-color: #00adb5;
@@ -201,4 +202,21 @@ input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
   display: none;
+}
+
+.custom-thumbnail-gallery {
+  display: flex;
+  align-items: center;
+}
+
+.scroll-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.scroll-buttons button {
+  margin-bottom: 5px;
 }

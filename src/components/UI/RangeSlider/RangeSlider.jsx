@@ -33,9 +33,7 @@ const RangeSlider = ({
               min={0}
               value={value}
               valueLabelDisplay="auto"
-              onChange={(_, value) => {
-                onChange(value);
-              }}
+              onChange={onChange}
             />
           </Box>
         );
