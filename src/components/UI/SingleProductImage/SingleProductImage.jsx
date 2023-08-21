@@ -53,7 +53,7 @@ const SingleProductImage = ({ images }) => {
           onClick={() => handleSlide(currentIndex + 1)}
           disabled={currentIndex === images.length - 1}
         >
-          &darr;
+          changed &darr;
         </button>
       </div>
     </div>
