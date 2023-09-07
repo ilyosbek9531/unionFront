@@ -9,24 +9,30 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { QueryClientProvider } from "react-query";
+import { queryClient } from "services/http-client";
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       {typeof window !== "undefined" ? (
         <PersistGate loading={null} persistor={persistor}>
+          <QueryClientProvider client={queryClient}>
+            <ThemeProvider theme={theme}>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </ThemeProvider>
+          </QueryClientProvider>
+        </PersistGate>
+      ) : (
+        <QueryClientProvider client={queryClient}>
           <ThemeProvider theme={theme}>
             <Layout>
               <Component {...pageProps} />
             </Layout>
           </ThemeProvider>
-        </PersistGate>
-      ) : (
-        <ThemeProvider theme={theme}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
+        </QueryClientProvider>
       )}
     </Provider>
   );

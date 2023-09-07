@@ -1,3 +1,5 @@
+import { ArrowRightIcon } from "components/Icons";
+import styles from "./SingleProductImage.module.scss";
 import React, { useState, useRef } from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -46,14 +48,18 @@ const SingleProductImage = ({ images }) => {
           onClick={() => handleSlide(currentIndex - 1)}
           disabled={currentIndex === 0}
         >
-          &uarr;
+          <ArrowRightIcon fill="#fff" size="20px" className="icon" />
         </button>
         <button
           className="arrow-down"
           onClick={() => handleSlide(currentIndex + 1)}
           disabled={currentIndex === images.length - 1}
         >
-          changed &darr;
+          <ArrowRightIcon
+            fill="#fff"
+            size="20px"
+            className={styles.arrow_down}
+          />
         </button>
       </div>
     </div>

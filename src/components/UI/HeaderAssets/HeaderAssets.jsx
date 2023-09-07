@@ -58,9 +58,11 @@ const HeaderAssets = () => {
           <BasketIcon />
           <div className={styles.assets__items__item__count}>76</div>
         </div>
-        <div className={styles.assets__items__item}>
-          <ProfileIcon />
-        </div>
+        <Link href="/login">
+          <div className={styles.assets__items__item}>
+            <ProfileIcon />
+          </div>
+        </Link>
       </div>
     </div>
   );
