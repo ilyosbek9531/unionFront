@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./CountDown.module.scss";
 
-const CountDown = () => {
+const CountDown = ({ onSubmit }) => {
   const initialSeconds = 60;
   const [time, setTime] = useState({
     minutes: Math.floor(initialSeconds / 60),

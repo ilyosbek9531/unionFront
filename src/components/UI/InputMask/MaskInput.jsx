@@ -21,7 +21,7 @@ const MaskInput = ({
   ...props
 }) => {
   return (
-    <div>
+    <div className={styles.inputMask_wrapper}>
       <Controller
         control={control}
         rules={validation}

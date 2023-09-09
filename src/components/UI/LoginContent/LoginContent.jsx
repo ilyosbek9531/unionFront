@@ -4,7 +4,7 @@ import styles from "./LoginContent.module.scss";
 import CountDown from "../CountDown/CountDown";
 import { useForm } from "react-hook-form";
 import MaskInput from "../InputMask/MaskInput";
-import { UseAuth } from "services/auth.service";
+import { UseAuth, UseVerifyOTP } from "services/auth.service";
 
 const LoginContent = () => {
   const router = useRouter();
@@ -22,15 +22,27 @@ const LoginContent = () => {
 
   const { mutate: authMutate } = UseAuth({
     onSuccess: (res) => {
-      router.push("/register");
+      // router.push("/registration");
+      // router.push("/");
       setActivePassword(true);
+    },
+    onError: (err) => {},
+  });
+  const { mutate: authVerifyOTPMutate } = UseVerifyOTP({
+    onSuccess: (res) => {
+      console.log(hi);
     },
     onError: (err) => {},
   });
 
   const onSubmit = (data) => {
+    console.log(data);
     authMutate({
       phone_number: data.phoneNumber.replaceAll(" ", "").replaceAll("-", ""),
+    });
+    authVerifyOTPMutate;
+    ({
+      code: data.password,
     });
   };
 
@@ -46,7 +58,7 @@ const LoginContent = () => {
         </label>
         <MaskInput
           mask="+\9\9\8 99 999-99-99"
-          maskChar="_"
+          maskChar=""
           placeholder="Введите номер телефона"
           name="phoneNumber"
           control={control}
@@ -55,17 +67,11 @@ const LoginContent = () => {
           validation={{
             required: {
               value: true,
-              message: "Обязательное поле",
+              message: "Raqamni to'liq kiriting",
             },
           }}
-        />
-        {/* <input
-          type="number"
-          {...register("phoneNumber", { required: true })}
-          placeholder="Telefon raqamingizni kiriting"
           className={styles.numberInput}
-        /> */}
-        <p></p>
+        />
         {activePassword ? (
           <>
             <label className={styles.form_title} for="password">
