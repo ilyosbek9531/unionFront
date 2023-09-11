@@ -16,14 +16,16 @@ const RegistrationContent = () => {
     defaultValues: {
       firstName: "",
       lastName: "",
-      phoneNumber: "",
+      phoneNumber:
+        typeof window !== "undefined" && localStorage.getItem("phone_number"),
     },
   });
 
-  console.log(errors);
-
   const { mutate: authRegisterPhone } = UseRegisterPhone({
     onSuccess: (res) => {
+      localStorage.setItem("first_name", res.first_name);
+      localStorage.setItem("user_id", res.user_id);
+      localStorage.setItem("token", res.token);
       router.push("/");
     },
     onError: (err) => {},
@@ -49,6 +51,7 @@ const RegistrationContent = () => {
           name="phoneNumber"
           control={control}
           errors={errors}
+          disabled={true}
           autoFocus
           validation={{
             required: {

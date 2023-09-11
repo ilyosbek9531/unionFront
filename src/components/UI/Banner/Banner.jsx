@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper";
 
 import styles from "./Banner.module.scss";
+import { useGetBanner } from "services/main.service";
 
 const banner = [
   {
@@ -25,6 +26,13 @@ const banner = [
 ];
 
 const Banner = () => {
+  const { data } = useGetBanner({
+    queryParams: {
+      limit: 10,
+      offset: 0,
+    },
+  });
+  console.log("data", data);
   return (
     <Container>
       <div className={styles.banner}>

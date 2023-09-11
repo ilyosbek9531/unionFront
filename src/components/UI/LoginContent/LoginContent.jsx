@@ -5,6 +5,7 @@ import CountDown from "../CountDown/CountDown";
 import { useForm } from "react-hook-form";
 import MaskInput from "../InputMask/MaskInput";
 import { UseAuth, UseVerifyOTP } from "services/auth.service";
+import ShowAlert from "../ShowAlert/ShowAlert";
 
 const LoginContent = () => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const LoginContent = () => {
     register,
     handleSubmit,
     control,
+    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -20,33 +22,44 @@ const LoginContent = () => {
     },
   });
 
+  const [activePassword, setActivePassword] = useState(false);
+
   const { mutate: authMutate } = UseAuth({
     onSuccess: (res) => {
-      // router.push("/registration");
-      // router.push("/");
       setActivePassword(true);
     },
     onError: (err) => {},
   });
+
   const { mutate: authVerifyOTPMutate } = UseVerifyOTP({
     onSuccess: (res) => {
-      console.log(hi);
+      localStorage.setItem("phone_number", res.phone_number);
+      if (res.user_found) {
+        router.push("/");
+        localStorage.setItem("user_id", res.user_id);
+        localStorage.setItem("token", res.token);
+      } else {
+        router.push("/registration");
+      }
     },
-    onError: (err) => {},
+    onError: (err) => {
+      console.log(err);
+      <ShowAlert severity={"error"}>{err.error}</ShowAlert>;
+    },
   });
 
   const onSubmit = (data) => {
-    console.log(data);
-    authMutate({
-      phone_number: data.phoneNumber.replaceAll(" ", "").replaceAll("-", ""),
-    });
-    authVerifyOTPMutate;
-    ({
-      code: data.password,
-    });
+    if (!activePassword) {
+      authMutate({
+        phone_number: data.phoneNumber.replaceAll(" ", "").replaceAll("-", ""),
+      });
+    } else {
+      authVerifyOTPMutate({
+        phone_number: data.phoneNumber.replaceAll(" ", "").replaceAll("-", ""),
+        code: data.password,
+      });
+    }
   };
-
-  const [activePassword, setActivePassword] = useState(false);
 
   return (
     <div className={styles.login}>
@@ -83,7 +96,7 @@ const LoginContent = () => {
               placeholder="Kodni kiriting"
               className={styles.numberInput}
             />
-            <CountDown />
+            <CountDown authMutate={authMutate} getValues={getValues} />
           </>
         ) : (
           ""

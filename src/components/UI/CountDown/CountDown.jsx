@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import styles from "./CountDown.module.scss";
 
-const CountDown = ({ onSubmit }) => {
-  const initialSeconds = 60;
+const CountDown = ({ authMutate, getValues }) => {
+  const initialSeconds = 10;
   const [time, setTime] = useState({
     minutes: Math.floor(initialSeconds / 60),
     seconds: initialSeconds % 60,
@@ -28,6 +28,11 @@ const CountDown = ({ onSubmit }) => {
   }, [time]);
 
   const handleResendClick = () => {
+    authMutate({
+      phone_number: getValues("phoneNumber")
+        .replaceAll(" ", "")
+        .replaceAll("-", ""),
+    });
     setTime({
       minutes: Math.floor(initialSeconds / 60),
       seconds: initialSeconds % 60,
