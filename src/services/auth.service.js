@@ -1,10 +1,10 @@
 import { useMutation } from "react-query";
-import { requestUnionAuth } from "./http-client";
+import { requestUnion } from "./http-client";
 
 const authService = {
-  register: (data) => requestUnionAuth.post(`/generate_otp`, data),
-  verifyOtp: (data) => requestUnionAuth.post("/verify_otp", data),
-  registerPhone: (data) => requestUnionAuth.post("/register_phone", data),
+  register: (data) => requestUnion.post(`/generate_otp`, data),
+  verifyOtp: (data) => requestUnion.post("/verify_otp", data),
+  registerPhone: (data) => requestUnion.post("/register_phone", data),
 };
 
 export const UseAuth = (mutationSettings) => {
