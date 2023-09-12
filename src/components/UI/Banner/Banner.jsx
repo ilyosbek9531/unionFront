@@ -6,25 +6,6 @@ import { Autoplay, Navigation, Pagination } from "swiper";
 import styles from "./Banner.module.scss";
 import { useGetBanner } from "services/main.service";
 
-const banner = [
-  {
-    id: 1,
-    img: "/images/banner1.png",
-  },
-  {
-    id: 2,
-    img: "/images/banner1.png",
-  },
-  {
-    id: 3,
-    img: "/images/banner1.png",
-  },
-  {
-    id: 4,
-    img: "/images/banner1.png",
-  },
-];
-
 const Banner = () => {
   const { data } = useGetBanner({
     queryParams: {
@@ -32,7 +13,6 @@ const Banner = () => {
       offset: 0,
     },
   });
-  console.log("data", data);
   return (
     <Container>
       <div className={styles.banner}>
@@ -51,9 +31,9 @@ const Banner = () => {
           modules={[Autoplay, Navigation, Pagination]}
           className="custom-swiper"
         >
-          {banner?.map((el) => (
+          {data?.datas?.map((el) => (
             <SwiperSlide key={el.id}>
-              <img src={el.img} alt="banner" />
+              <img src={el.image_url} alt="banner" />
             </SwiperSlide>
           ))}
         </Swiper>
