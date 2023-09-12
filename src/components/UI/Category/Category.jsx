@@ -11,7 +11,7 @@ const Category = () => {
       offset: 0,
     },
   });
-  console.log("1", createCategoryArr(data?.datas ?? []));
+  // console.log("1", createCategoryArr(data?.datas ?? []));
   return (
     <Container>
       <div className={styles.category}>

@@ -37,6 +37,7 @@ export function Main() {
   const { mutate: postApplicationMutate } = usePostApplication({
     onSuccess: (res) => {
       setOpenSendSuccessfully(true);
+      setOpenModal(false);
       reset();
     },
     onError: (err) => {},

@@ -9,12 +9,25 @@ export const requestUnion = axios.create({
   params: {},
   headers: {},
 });
+export const requestUnionToken = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL_UNION,
+
+  params: {},
+  headers: {
+    Authorization: token,
+  },
+});
 
 const errorHandler = (error) => {
   return Promise.reject(error.response);
 };
 
 requestUnion.interceptors.response.use(
+  (response) => response.data,
+  errorHandler
+);
+
+requestUnionToken.interceptors.response.use(
   (response) => response.data,
   errorHandler
 );

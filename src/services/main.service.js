@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "react-query";
-import { requestUnion } from "./http-client";
+import { requestUnion, requestUnionToken } from "./http-client";
 
 const mainService = {
   getBanner: (queryParams) =>
@@ -7,7 +7,7 @@ const mainService = {
   // getTopProducts: (queryParams)=> requestUnion.get("/", {params: queryParams}),
   getCategory: (queryParams) =>
     requestUnion.get("category", { params: queryParams }),
-  postApplication: (data) => requestUnion.post("/application", data),
+  postApplication: (data) => requestUnionToken.post("/application", data),
 };
 
 export const useGetBanner = ({ queryParams }) => {
