@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "react-query";
-import { requestUnion, requestUnionToken } from "./http-client";
+import { queryClient, requestUnion, requestUnionToken } from "./http-client";
 
 const mainService = {
   getBanner: (queryParams) =>
@@ -7,6 +7,8 @@ const mainService = {
   // getTopProducts: (queryParams)=> requestUnion.get("/", {params: queryParams}),
   getCategory: (queryParams) =>
     requestUnion.get("category", { params: queryParams }),
+  getUniversities: (queryParams) =>
+    requestUnion.get("/university", { params: queryParams }),
   postApplication: (data) => requestUnionToken.post("/application", data),
 };
 
@@ -25,6 +27,12 @@ export const useGetTopProducts = ({ queryParams }) => {
 export const useGetCategories = ({ queryParams }) => {
   return useQuery(["", queryParams], async () => {
     return await mainService.getCategory(queryParams);
+  });
+};
+
+export const useGetUniversities = ({ queryParams }) => {
+  return useQuery(["GET_UNIVERSITIES", queryParams], async () => {
+    return await mainService.getUniversities(queryParams);
   });
 };
 

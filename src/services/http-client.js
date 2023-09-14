@@ -1,7 +1,11 @@
 import axios from "axios";
 import { QueryClient } from "react-query";
 
-const token = typeof window !== "undefined" && localStorage.getItem("token");
+export const token =
+  typeof window !== "undefined" && localStorage.getItem("token");
+
+export const user_first_name =
+  typeof window != "undefined" && localStorage.getItem("first_name");
 
 export const requestUnion = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL_UNION,

@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Universities.module.scss";
 import { Container } from "@mui/material";
 import Marquee from "react-fast-marquee";
+import { useGetUniversities } from "services/main.service";
 
 const universitiesMarque = [
   {
@@ -32,6 +33,14 @@ const universitiesMarque = [
 ];
 
 const Universities = () => {
+  const { data } = useGetUniversities({
+    queryParams: {
+      limit: 0,
+      offset: 0,
+    },
+  });
+
+  console.log("data", data);
   return (
     <div className={styles.universities}>
       <Container>
@@ -47,10 +56,10 @@ const Universities = () => {
           gradient={true}
           gradientColor={[255, 255, 255]}
         >
-          {universitiesMarque.map((el, index) => (
+          {data?.datas?.map((el, index) => (
             <div className={styles.marquee__item}>
-              <img src={el.img} alt="university" />
-              <span>{el.name}</span>
+              <img src={el.image_url} alt="university" />
+              <span>{el.description}</span>
             </div>
           ))}
         </Marquee>
@@ -63,10 +72,10 @@ const Universities = () => {
           gradient={true}
           gradientColor={[255, 255, 255]}
         >
-          {universitiesMarque.map((el, index) => (
+          {data?.datas?.map((el, index) => (
             <div className={styles.marquee__item}>
-              <img src={el.img} alt="university" />
-              <span>{el.name}</span>
+              <img src={el.image_url} alt="university" />
+              <span>{el.description}</span>
             </div>
           ))}
         </Marquee>

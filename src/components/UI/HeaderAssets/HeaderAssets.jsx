@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./HeaderAssets.module.scss";
 import {
   BasketIcon,
   LikeIcon,
+  LogoutIcon,
   ProfileIcon,
   UzbekLangIcon,
 } from "components/Icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { token, user_first_name } from "services/http-client";
 
 const langs = [
   {
@@ -27,6 +29,19 @@ const langs = [
   },
 ];
 
+const profilePages = [
+  {
+    key: "myProfile",
+    label: "My Profile",
+  },
+
+  {
+    key: "logout",
+    label: "Log Out ",
+    icon: <LogoutIcon />,
+  },
+];
+
 const HeaderAssets = () => {
   const router = useRouter();
   const currentLang = langs.find((lang) => router.locale == lang.key);
@@ -40,8 +55,8 @@ const HeaderAssets = () => {
               <Link href={router.asPath} locale={elem.key} replace={true}>
                 <li key={elem?.label} className={styles.childItems}>
                   <>
-                    {elem.icon}
                     <a>{elem.label} </a>
+                    {elem.icon}
                   </>
                 </li>
               </Link>
@@ -58,11 +73,33 @@ const HeaderAssets = () => {
           <BasketIcon />
           <div className={styles.assets__items__item__count}>76</div>
         </div>
-        <Link href="/login">
-          <div className={styles.assets__items__item}>
-            <ProfileIcon />
+        {token ? (
+          <div className={styles.item}>
+            <h3 className={styles.first_letter}>
+              {user_first_name.charAt(0).toUpperCase()}
+            </h3>
+            <div className={styles.childList}>
+              <ul>
+                {profilePages.map((elem) => (
+                  <Link href={router.asPath} locale={elem.key} replace={true}>
+                    <li key={elem?.label} className={styles.childItems}>
+                      <>
+                        <a>{elem.label} </a>
+                        {elem.icon}
+                      </>
+                    </li>
+                  </Link>
+                ))}
+              </ul>
+            </div>
           </div>
-        </Link>
+        ) : (
+          <Link href="/login">
+            <div className={styles.assets__items__item}>
+              <ProfileIcon />
+            </div>
+          </Link>
+        )}
       </div>
     </div>
   );
