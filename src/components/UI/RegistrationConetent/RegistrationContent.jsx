@@ -27,6 +27,9 @@ const RegistrationContent = () => {
       localStorage.setItem("user_id", res.user_id);
       localStorage.setItem("token", res.token);
       router.push("/");
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     },
     onError: (err) => {},
   });

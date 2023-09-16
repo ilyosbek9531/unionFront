@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useGetProducts } from "services/products.service";
 
 const useProductsContent = () => {
   const [category, setCategory] = useState("");
@@ -15,6 +16,13 @@ const useProductsContent = () => {
         label: "Barchasi",
         value: "all",
       },
+    },
+  });
+
+  const { data } = useGetProducts({
+    queryParams: {
+      limit: 10,
+      offset: 0,
     },
   });
 

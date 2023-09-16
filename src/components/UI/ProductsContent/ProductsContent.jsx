@@ -14,6 +14,7 @@ const ProductsContent = () => {
     category,
     university,
   } = useProductsContent();
+
   return (
     <div className={styles.content}>
       <div className={styles.content__filter}>

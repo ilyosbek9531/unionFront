@@ -35,9 +35,13 @@ const LoginContent = () => {
     onSuccess: (res) => {
       localStorage.setItem("phone_number", res.phone_number);
       if (res.user_found) {
-        router.push("/");
+        localStorage.setItem("first_name", res.first_name);
         localStorage.setItem("user_id", res.user_id);
         localStorage.setItem("token", res.token);
+        router.push("/");
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       } else {
         router.push("/registration");
       }
