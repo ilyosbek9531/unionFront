@@ -1,18 +1,36 @@
-import { useMutation, useQuery } from "react-query";
-import { requestUnion, requestUnionToken } from "./http-client";
+import { useInfiniteQuery } from "react-query";
+import { request, requestUnion } from "./http-client";
 
-const productsService = {
-  getProducts: (queryParams) =>
-    requestUnion.get("/product", { params: queryParams }),
-  getCategory: (queryParams) =>
-    requestUnion.get("category", { params: queryParams }),
-  getUniversities: (queryParams) =>
-    requestUnion.get("/university", { params: queryParams }),
-  postApplication: (data) => requestUnionToken.post("/application", data),
+const productService = {
+  getProductData: (queryParams, pageParam) =>
+    requestUnion.get("/product", {
+      params: {
+        ...queryParams,
+        ...pageParam,
+      },
+    }),
 };
 
-export const useGetProducts = ({ queryParams }) => {
-  return useQuery(["GET_PRODUCTS", queryParams], async () => {
-    return await productsService.getProducts(queryParams);
-  });
+export const useGetProductDataInfinite = ({ queryParams, queryKey }) => {
+  return useInfiniteQuery(
+    [queryKey, queryParams],
+    async ({ pageParam = { limit: 10, offset: 0 } }) => {
+      return await productService
+        .getProductData(queryParams, pageParam)
+        .then((res) => res);
+    },
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        const limit = 10;
+        const offset = allPages.length * limit;
+        const totalCount = lastPage.count;
+
+        if (offset < totalCount) {
+          return { limit, offset };
+        }
+
+        return undefined;
+      },
+    }
+  );
 };

@@ -1,6 +1,8 @@
 import React from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import { Grid } from "@mui/material";
+import InfiniteScroll from "react-infinite-scroll-component";
+import styles from "./ProductsCards.module.scss";
 
 const data = [
   {
@@ -75,24 +77,66 @@ const data = [
   },
 ];
 
-const ProductsCards = () => {
+const ProductsCards = ({
+  fetchNextPage,
+  hasNextPage,
+  data,
+  flattenedArray,
+}) => {
   return (
-    <div>
-      <Grid container spacing={{ xs: 2 }}>
-        {data?.map((item) => (
-          <Grid item key={item.id} xs={12} md={6} lg={4}>
-            <ProductCard
-              key={item.id}
-              img={item.img}
-              name={item.name}
-              rate={item.rate}
-              price={item.price}
-            />
-          </Grid>
+    <main>
+      <InfiniteScroll
+        dataLength={data?.pages?.flat()?.length || 10}
+        next={fetchNextPage}
+        hasMore={hasNextPage}
+        loader={<h4>Loading...</h4>}
+        endMessage={
+          <p style={{ textAlign: "center" }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
+        className={styles.main}
+      >
+        {flattenedArray?.map((item) => (
+          <ProductCard
+            key={item.id}
+            img={item.image_url}
+            name={item.title}
+            rate={item.rating}
+            price={item.price}
+          />
         ))}
-      </Grid>
-    </div>
+      </InfiniteScroll>
+    </main>
   );
 };
 
 export default ProductsCards;
+
+{
+  /* <Grid container spacing={{ xs: 2 }}>
+        <InfiniteScroll
+          dataLength={data?.pages?.flat()?.length || 10}
+          next={fetchNextPage}
+          hasMore={hasNextPage}
+          loader={<h4>Loading...</h4>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
+        >
+          {flattenedArray?.map((item) => (
+            <Grid item key={item.id} xs={12} md={6} lg={4}>
+              <ProductCard
+                key={item.id}
+                img={item.image_url}
+                name={item.title}
+                rate={item.rating}
+                price={item.price}
+              />
+            </Grid>
+          ))}
+        </InfiniteScroll>
+      </Grid> */
+}

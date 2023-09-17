@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useGetProducts } from "services/products.service";
+import {
+  useGetProductDataInfinite,
+  useGetProducts,
+} from "services/products.service";
 
 const useProductsContent = () => {
   const [category, setCategory] = useState("");
   const [university, setUniversity] = useState("");
   const { control, watch, setValue } = useForm({
     defaultValues: {
-      price: [0, 2000000],
+      price: [0, 100000],
       "price-from": 0,
-      "price-to": 2000000,
+      "price-to": 100000,
       "category-search": "",
       "university-search": "",
       select: {
@@ -19,21 +22,24 @@ const useProductsContent = () => {
     },
   });
 
-  const { data } = useGetProducts({
+  const { fetchNextPage, hasNextPage, data } = useGetProductDataInfinite({
     queryParams: {
-      limit: 10,
-      offset: 0,
+      min_price: watch("price-from"),
+      max_price: watch("price-to"),
     },
+    queryKey: "GET_PRODUCT_DATA_INFINITE",
   });
 
-  console.log("price", watch("price"));
-  console.log("price-from", watch("price-from"));
-  console.log("price-to", watch("price-to"));
-  console.log("category-search", watch("category-search"));
-  console.log("university-search", watch("university-search"));
-  console.log("category", category);
-  console.log("university", university);
-  console.log("search", watch("search"));
+  const flattenedArray = data?.pages?.flatMap((obj) => obj.datas ?? []);
+
+  // console.log("price", watch("price"));
+  // console.log("price-from", watch("price-from"));
+  // console.log("price-to", watch("price-to"));
+  // console.log("category-search", watch("category-search"));
+  // console.log("university-search", watch("university-search"));
+  // console.log("category", category);
+  // console.log("university", university);
+  // console.log("search", watch("search"));
 
   useEffect(() => {
     setValue("price-from", watch("price")?.[0]);
@@ -51,6 +57,10 @@ const useProductsContent = () => {
     setUniversity,
     category,
     university,
+    fetchNextPage,
+    hasNextPage,
+    data,
+    flattenedArray,
   };
 };
 

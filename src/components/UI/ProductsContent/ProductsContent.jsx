@@ -13,6 +13,10 @@ const ProductsContent = () => {
     setUniversity,
     category,
     university,
+    fetchNextPage,
+    hasNextPage,
+    data,
+    flattenedArray,
   } = useProductsContent();
 
   return (
@@ -29,7 +33,12 @@ const ProductsContent = () => {
       </div>
       <div className={styles.content__right}>
         <ProductSearchSelect control={control} />
-        <ProductsCards />
+        <ProductsCards
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          data={data}
+          flattenedArray={flattenedArray}
+        />
       </div>
     </div>
   );

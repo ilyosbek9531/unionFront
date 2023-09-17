@@ -13,8 +13,8 @@ const FilterPrice = ({ control, setValue }) => {
             control={control}
             name="price"
             step={20}
-            maxRange={2000000}
-            defaultValue={[0, 2000000]}
+            maxRange={100000}
+            defaultValue={[0, 100000]}
           />
           <div className={styles.rangeInputs}>
             <InputFormat
@@ -29,11 +29,11 @@ const FilterPrice = ({ control, setValue }) => {
             <InputFormat
               control={control}
               name="price-to"
-              placeholder="2 000 000"
+              placeholder="100 000"
               customOnChange={(e) => {
                 setValue("price-to", +e.target.value.replaceAll(" ", ""));
               }}
-              minmax={2000000}
+              minmax={100000}
             />
           </div>
         </>
