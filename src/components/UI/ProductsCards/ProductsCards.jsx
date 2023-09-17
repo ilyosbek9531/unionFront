@@ -1,6 +1,6 @@
 import React from "react";
 import ProductCard from "../ProductCard/ProductCard";
-import { Grid } from "@mui/material";
+import { Skeleton } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
 import styles from "./ProductsCards.module.scss";
 
@@ -77,6 +77,8 @@ const data = [
   },
 ];
 
+const skeletonCount = [1, 2, 3, 4, 5, 6];
+
 const ProductsCards = ({
   fetchNextPage,
   hasNextPage,
@@ -89,7 +91,14 @@ const ProductsCards = ({
         dataLength={data?.pages?.flat()?.length || 10}
         next={fetchNextPage}
         hasMore={hasNextPage}
-        loader={<h4>Loading...</h4>}
+        loader={skeletonCount.map((count) => (
+          <Skeleton
+            key={count}
+            variant="rectangular"
+            width={"100%"}
+            height={"358.81px"}
+          />
+        ))}
         endMessage={
           <p style={{ textAlign: "center" }}>
             <b>Yay! You have seen it all</b>
