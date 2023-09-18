@@ -77,13 +77,17 @@ const data = [
   },
 ];
 
-const TopProducts = () => {
+const TopProducts = ({ visible = true }) => {
   return (
     <div className={styles.top}>
-      <div className={styles.top__title}>
-        <h5>Top products</h5>
-        <span>View all</span>
-      </div>
+      {visible ? (
+        <div className={styles.top__title}>
+          <h5>Top products</h5>
+          <span>View all</span>
+        </div>
+      ) : (
+        ""
+      )}
       <Swiper
         slidesPerView={5}
         spaceBetween={20}

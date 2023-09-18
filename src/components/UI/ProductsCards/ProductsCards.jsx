@@ -125,31 +125,3 @@ const ProductsCards = ({
 };
 
 export default ProductsCards;
-
-{
-  /* <Grid container spacing={{ xs: 2 }}>
-        <InfiniteScroll
-          dataLength={data?.pages?.flat()?.length || 10}
-          next={fetchNextPage}
-          hasMore={hasNextPage}
-          loader={<h4>Loading...</h4>}
-          endMessage={
-            <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          }
-        >
-          {flattenedArray?.map((item) => (
-            <Grid item key={item.id} xs={12} md={6} lg={4}>
-              <ProductCard
-                key={item.id}
-                img={item.image_url}
-                name={item.title}
-                rate={item.rating}
-                price={item.price}
-              />
-            </Grid>
-          ))}
-        </InfiniteScroll>
-      </Grid> */
-}

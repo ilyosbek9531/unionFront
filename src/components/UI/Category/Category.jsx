@@ -3,8 +3,10 @@ import styles from "./Category.module.scss";
 import { Container } from "@mui/material";
 import { createCategoryArr } from "utils/createCategoryArr";
 import { useGetCategories } from "services/main.service";
+import { useRouter } from "next/router";
 
 const Category = () => {
+  const { push } = useRouter();
   const { data } = useGetCategories({
     queryParams: {
       limit: 0,
@@ -23,6 +25,7 @@ const Category = () => {
                 <div
                   key={elem.id}
                   className={styles[`category__list__${index + 1}`]}
+                  onClick={() => push(`/products?category=${elem.id}`)}
                 >
                   <img src={elem.image_url} alt="categoryImg" />
                   <span>{elem.name}</span>

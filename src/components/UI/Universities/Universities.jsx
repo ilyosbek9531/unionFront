@@ -3,8 +3,10 @@ import styles from "./Universities.module.scss";
 import { Container } from "@mui/material";
 import Marquee from "react-fast-marquee";
 import { useGetUniversities } from "services/main.service";
+import { useRouter } from "next/router";
 
 const Universities = () => {
+  const { push } = useRouter();
   const { data } = useGetUniversities({
     queryParams: {
       limit: 0,
@@ -12,7 +14,6 @@ const Universities = () => {
     },
   });
 
-  console.log("data", data);
   return (
     <div className={styles.universities}>
       <Container>
@@ -29,7 +30,10 @@ const Universities = () => {
           gradientColor={[255, 255, 255]}
         >
           {data?.datas?.map((el, index) => (
-            <div className={styles.marquee__item}>
+            <div
+              className={styles.marquee__item}
+              onClick={() => push(`/products?university=${el.id}`)}
+            >
               <img src={el.image_url} alt="university" />
               <span>{el.description}</span>
             </div>
@@ -45,7 +49,10 @@ const Universities = () => {
           gradientColor={[255, 255, 255]}
         >
           {data?.datas?.map((el, index) => (
-            <div className={styles.marquee__item}>
+            <div
+              className={styles.marquee__item}
+              onClick={() => push(`/products?university=${el.id}`)}
+            >
               <img src={el.image_url} alt="university" />
               <span>{el.description}</span>
             </div>

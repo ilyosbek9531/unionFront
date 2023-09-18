@@ -5,6 +5,7 @@ import Input from "../Form/Input/Input";
 import { SearchIcon } from "components/Icons";
 import { useGetCategories, useGetUniversities } from "services/main.service";
 import GroupedRadioButton from "../GroupedRadioButton/GroupedRadioButton";
+import { useWatch } from "react-hook-form";
 
 const Ratings = [
   {
@@ -29,19 +30,15 @@ const Ratings = [
   },
 ];
 
-const FilterRadioButtons = ({
-  control,
-  setCategory,
-  setUniversity,
-  category,
-  university,
-  rating,
-  setRating,
-}) => {
+const FilterRadioButtons = ({ control }) => {
+  const categorySearch = useWatch({ control, name: "category-search" });
+  const universitySearch = useWatch({ control, name: "university-search" });
+
   const { data: categories } = useGetCategories({
     queryParams: {
       limit: 0,
       offset: 0,
+      search: categorySearch,
     },
   });
 
@@ -49,6 +46,7 @@ const FilterRadioButtons = ({
     queryParams: {
       limit: 0,
       offset: 0,
+      search: universitySearch,
     },
   });
 
@@ -81,6 +79,7 @@ const FilterRadioButtons = ({
             control={control}
             name="category"
             options={getCategory}
+            onQuery={true}
           />
         </Box>
       </CAccordion>
@@ -97,6 +96,7 @@ const FilterRadioButtons = ({
             control={control}
             name="university"
             options={getUniversity}
+            onQuery={true}
           />
         </Box>
       </CAccordion>
@@ -106,6 +106,7 @@ const FilterRadioButtons = ({
             control={control}
             name="rating"
             options={Ratings}
+            onQuery={true}
           />
         </Box>
       </CAccordion>

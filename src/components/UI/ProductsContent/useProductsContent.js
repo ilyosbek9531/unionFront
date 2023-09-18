@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import {
-  useGetProductDataInfinite,
-  useGetProducts,
-} from "services/products.service";
+import { useGetProductDataInfinite } from "services/products.service";
 
 const useProductsContent = () => {
-  const [category, setCategory] = useState("");
-  const [university, setUniversity] = useState("");
-  const [rating, setRating] = useState("");
+  const { query } = useRouter();
   const { control, watch, setValue } = useForm({
     defaultValues: {
       price: [0, 100000],
@@ -27,6 +23,9 @@ const useProductsContent = () => {
     queryParams: {
       min_price: watch("price-from"),
       max_price: watch("price-to"),
+      category_id: query.category,
+      university_id: query.university,
+      rating: query.rating,
     },
     queryKey: "GET_PRODUCT_DATA_INFINITE",
   });
@@ -54,16 +53,10 @@ const useProductsContent = () => {
   return {
     control,
     setValue,
-    setCategory,
-    setUniversity,
-    category,
-    university,
     fetchNextPage,
     hasNextPage,
     data,
     flattenedArray,
-    rating,
-    setRating,
   };
 };
 

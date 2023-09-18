@@ -5,6 +5,7 @@ import Radio from "@mui/material/Radio";
 import { makeStyles } from "@mui/styles";
 import ShowMoreCollapse from "../ShowMoreCollapse/ShowMoreCollapse";
 import styles from "./GroupedRadioButton.module.scss";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles({
   root: {
@@ -19,8 +20,29 @@ const useStyles = makeStyles({
   },
 });
 
-const GroupedRadioButton = ({ control, name, options }) => {
+const GroupedRadioButton = ({ control, name, options, onQuery = false }) => {
   const classes = useStyles();
+  const router = useRouter();
+
+  const handleChange = (value) => {
+    const currentQuery = { ...router.query };
+
+    if (currentQuery[name] === value) {
+      delete currentQuery[name];
+      router.push({
+        pathname: router.pathname,
+        query: currentQuery,
+      });
+    } else {
+      currentQuery[name] = value;
+      onQuery
+        ? router.push({
+            pathname: router.pathname,
+            query: { ...router.query, [name]: value },
+          })
+        : field.onChange(e);
+    }
+  };
   return (
     <Controller
       control={control}
@@ -40,9 +62,12 @@ const GroupedRadioButton = ({ control, name, options }) => {
                     <FormControlLabel
                       key={index}
                       value={el.value}
-                      onChange={field.onChange}
+                      onClick={() => handleChange(el.value)}
                       label={el.label}
-                      checked={el.value === field.value}
+                      checked={
+                        el.value ===
+                        (onQuery ? router.query[name] : field.value)
+                      }
                       control={<Radio />}
                     />
                   ))}
@@ -54,9 +79,12 @@ const GroupedRadioButton = ({ control, name, options }) => {
                     <FormControlLabel
                       key={index}
                       value={el.value}
-                      onChange={field.onChange}
+                      onClick={() => handleChange(el.value)}
                       label={el.label}
-                      checked={el.value === field.value}
+                      checked={
+                        el.value ===
+                        (onQuery ? router.query[name] : field.value)
+                      }
                       control={<Radio />}
                     />
                   ))}
