@@ -72,7 +72,7 @@ export default createTheme({
           paddingLeft: rem(24),
           paddingRight: rem(24),
           "@media (min-width:1440px)": {
-            maxWidth: "1500px",
+            maxWidth: "1248px",
             width: "100%",
           },
           "@media (max-width:768px)": {
