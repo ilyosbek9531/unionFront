@@ -17,6 +17,8 @@ const ProductsContent = () => {
     hasNextPage,
     data,
     flattenedArray,
+    rating,
+    setRating,
   } = useProductsContent();
 
   return (
@@ -29,6 +31,8 @@ const ProductsContent = () => {
           setUniversity={setUniversity}
           category={category}
           university={university}
+          rating={rating}
+          setRating={setRating}
         />
       </div>
       <div className={styles.content__right}>

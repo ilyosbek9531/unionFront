@@ -100,9 +100,11 @@ const ProductsCards = ({
           />
         ))}
         endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Yay! You have seen it all</b>
-          </p>
+          <>
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          </>
         }
         className={styles.main}
       >

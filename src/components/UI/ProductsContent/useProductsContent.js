@@ -8,6 +8,7 @@ import {
 const useProductsContent = () => {
   const [category, setCategory] = useState("");
   const [university, setUniversity] = useState("");
+  const [rating, setRating] = useState("");
   const { control, watch, setValue } = useForm({
     defaultValues: {
       price: [0, 100000],
@@ -61,6 +62,8 @@ const useProductsContent = () => {
     hasNextPage,
     data,
     flattenedArray,
+    rating,
+    setRating,
   };
 };
 

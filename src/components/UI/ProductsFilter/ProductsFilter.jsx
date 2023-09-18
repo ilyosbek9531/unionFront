@@ -11,6 +11,8 @@ const ProductsFilter = ({
   setUniversity,
   category,
   university,
+  rating,
+  setRating,
 }) => {
   return (
     <div className={styles.filter}>
@@ -25,6 +27,8 @@ const ProductsFilter = ({
         setUniversity={setUniversity}
         category={category}
         university={university}
+        rating={rating}
+        setRating={setRating}
       />
     </div>
   );

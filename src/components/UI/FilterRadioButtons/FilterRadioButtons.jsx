@@ -1,10 +1,33 @@
 import React from "react";
 import CAccordion from "../CAccordion/CAccordion";
-import { Box } from "@mui/material";
+import { Box, Rating } from "@mui/material";
 import Input from "../Form/Input/Input";
 import { SearchIcon } from "components/Icons";
-import CRadioButtons from "../CRadioButtons/CRadioButtons";
 import { useGetCategories, useGetUniversities } from "services/main.service";
+import GroupedRadioButton from "../GroupedRadioButton/GroupedRadioButton";
+
+const Ratings = [
+  {
+    label: <Rating name="read-only" value={"1"} readOnly />,
+    value: "1",
+  },
+  {
+    label: <Rating name="read-only" value={"2"} readOnly />,
+    value: "2",
+  },
+  {
+    label: <Rating name="read-only" value={"3"} readOnly />,
+    value: "3",
+  },
+  {
+    label: <Rating name="read-only" value={"4"} readOnly />,
+    value: "4",
+  },
+  {
+    label: <Rating name="read-only" value={"5"} readOnly />,
+    value: "5",
+  },
+];
 
 const FilterRadioButtons = ({
   control,
@@ -12,6 +35,8 @@ const FilterRadioButtons = ({
   setUniversity,
   category,
   university,
+  rating,
+  setRating,
 }) => {
   const { data: categories } = useGetCategories({
     queryParams: {
@@ -52,12 +77,10 @@ const FilterRadioButtons = ({
             name="category-search"
             placeholder="Kategoriyalar"
           />
-          <CRadioButtons
-            options={getCategory}
+          <GroupedRadioButton
             control={control}
             name="category"
-            setCategory={setCategory}
-            category={category}
+            options={getCategory}
           />
         </Box>
       </CAccordion>
@@ -70,12 +93,19 @@ const FilterRadioButtons = ({
             name="university-search"
             placeholder="Unverstetlar"
           />
-          <CRadioButtons
-            options={getUniversity}
+          <GroupedRadioButton
             control={control}
             name="university"
-            setUniversity={setUniversity}
-            university={university}
+            options={getUniversity}
+          />
+        </Box>
+      </CAccordion>
+      <CAccordion title="Ratings" id={2}>
+        <Box display="flex" flexDirection="column" rowGap="20px">
+          <GroupedRadioButton
+            control={control}
+            name="rating"
+            options={Ratings}
           />
         </Box>
       </CAccordion>
