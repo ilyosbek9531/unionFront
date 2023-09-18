@@ -6,7 +6,7 @@
   @include direction-column;
   gap: rem(50);
   @media (min-width: 1440px) {
-    max-width: 1248px;
+    max-width: 1500px;
     padding-left: rem(8);
     padding-right: rem(8);
   }
@@ -17,7 +17,7 @@
     @include justify-content-between;
     align-items: center;
     @media (min-width: 1440px) {
-      max-width: 1248px;
+      max-width: 1500px;
       padding-left: rem(24);
       padding-right: rem(24);
     }

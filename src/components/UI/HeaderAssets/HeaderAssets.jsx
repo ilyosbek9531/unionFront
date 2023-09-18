@@ -66,10 +66,12 @@ const HeaderAssets = () => {
           </div>
         </li>
         <div className={styles.assets__items}>
-          <div className={styles.assets__items__item}>
-            <LikeIcon />
-            <div className={styles.assets__items__item__count}>2</div>
-          </div>
+          <Link href="/favorites">
+            <div className={styles.assets__items__item}>
+              <LikeIcon />
+              <div className={styles.assets__items__item__count}>2</div>
+            </div>
+          </Link>
           <div className={styles.assets__items__item}>
             <BasketIcon />
             <div className={styles.assets__items__item__count}>76</div>
