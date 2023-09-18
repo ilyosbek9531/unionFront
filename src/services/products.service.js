@@ -9,6 +9,11 @@ const productService = {
         ...pageParam,
       },
     }),
+
+  getProductCategories: (queryParams) =>
+    requestUnion.get("/category", { params: queryParams }),
+  getUniversities: (queryParams) =>
+    requestUnion.get("/university", { params: queryParams }),
 };
 
 export const useGetProductDataInfinite = ({ queryParams, queryKey }) => {
@@ -33,4 +38,16 @@ export const useGetProductDataInfinite = ({ queryParams, queryKey }) => {
       },
     }
   );
+};
+
+export const useGetCategories = ({ queryParams }) => {
+  return useQuery(["GET_CATEGORIES", queryParams], async () => {
+    return await productService.getProductCategories(queryParams);
+  });
+};
+
+export const useGetUniversities = ({ queryParams }) => {
+  return useQuery(["GET_UNIVERSITIES", queryParams], async () => {
+    return await productService.getUniversities(queryParams);
+  });
 };

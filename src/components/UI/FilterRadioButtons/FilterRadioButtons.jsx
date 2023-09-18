@@ -4,19 +4,7 @@ import { Box } from "@mui/material";
 import Input from "../Form/Input/Input";
 import { SearchIcon } from "components/Icons";
 import CRadioButtons from "../CRadioButtons/CRadioButtons";
-
-const options = [
-  { label: "hi", value: "1" },
-  { label: "hello", value: "2" },
-  { label: "welcome", value: "3" },
-  { label: "bitch", value: "4" },
-  { label: "baklashka", value: "5" },
-  { label: "xotin", value: "6" },
-  { label: "noProblem", value: "7" },
-  { label: "cola", value: "8" },
-  { label: "pepsi", value: "9" },
-  { label: "xurrak", value: "10" },
-];
+import { useGetCategories, useGetUniversities } from "services/main.service";
 
 const FilterRadioButtons = ({
   control,
@@ -25,6 +13,34 @@ const FilterRadioButtons = ({
   category,
   university,
 }) => {
+  const { data: categories } = useGetCategories({
+    queryParams: {
+      limit: 0,
+      offset: 0,
+    },
+  });
+
+  const { data: unversities } = useGetUniversities({
+    queryParams: {
+      limit: 0,
+      offset: 0,
+    },
+  });
+
+  const getCategory = categories?.datas.map((item) => {
+    return {
+      label: item.name,
+      value: item.id,
+    };
+  });
+
+  const getUniversity = unversities?.datas.map((item) => {
+    return {
+      label: item.title,
+      value: item.id,
+    };
+  });
+
   return (
     <div>
       <CAccordion title="Kategoriyalar" id={2}>
@@ -37,7 +53,7 @@ const FilterRadioButtons = ({
             placeholder="Kategoriyalar"
           />
           <CRadioButtons
-            options={options}
+            options={getCategory}
             control={control}
             name="category"
             setCategory={setCategory}
@@ -55,7 +71,7 @@ const FilterRadioButtons = ({
             placeholder="Unverstetlar"
           />
           <CRadioButtons
-            options={options}
+            options={getUniversity}
             control={control}
             name="university"
             setUniversity={setUniversity}

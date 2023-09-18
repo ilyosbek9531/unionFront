@@ -113,6 +113,8 @@ const ProductsCards = ({
             name={item.title}
             rate={item.rating}
             price={item.price}
+            description={item.description}
+            size={item.size}
           />
         ))}
       </InfiniteScroll>

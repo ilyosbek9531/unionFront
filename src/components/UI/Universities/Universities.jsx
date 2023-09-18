@@ -4,34 +4,6 @@ import { Container } from "@mui/material";
 import Marquee from "react-fast-marquee";
 import { useGetUniversities } from "services/main.service";
 
-const universitiesMarque = [
-  {
-    id: 1,
-    img: "/images/university1.png",
-    name: "Toshkent Axborot Texnologiya Unversteti",
-  },
-  {
-    id: 2,
-    img: "/images/university1.png",
-    name: "Toshkent Axborot Texnologiya Unversteti",
-  },
-  {
-    id: 3,
-    img: "/images/university1.png",
-    name: "Toshkent Axborot Texnologiya Unversteti",
-  },
-  {
-    id: 4,
-    img: "/images/university1.png",
-    name: "Toshkent Axborot Texnologiya Unversteti",
-  },
-  {
-    id: 5,
-    img: "/images/university1.png",
-    name: "Toshkent Axborot Texnologiya Unversteti",
-  },
-];
-
 const Universities = () => {
   const { data } = useGetUniversities({
     queryParams: {
