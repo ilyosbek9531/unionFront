@@ -12,6 +12,18 @@ export const ArrowIcon = ({ fill = "#8C8C8C" }) => (
     />
   </svg>
 );
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+>
+  <path
+    d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"
+    fill="#8C8C8C"
+  />
+</svg>;
 
 export const UzbekLangIcon = () => (
   <svg
@@ -173,6 +185,21 @@ export const ArrowRightIcon = ({ fill = "#8C8C8C", size = "24 " }) => (
   </svg>
 );
 
+export const ArrowLeftIcon = ({ fill = "#8C8C8C", size = "24 " }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 30 30"
+    fill="none"
+  >
+    <path
+      d="M16.4642 15.0009L10.2771 8.81366L12.0449 7.0459L19.9999 15.0009L12.0449 22.9557L10.2771 21.188L16.4642 15.0009Z"
+      fill={fill}
+    />
+  </svg>
+);
+
 export const FilterIcon = () => (
   <svg
     width="24"
@@ -281,5 +308,41 @@ export const LogoutIcon = () => (
       stroke-width="1.5"
       stroke-linecap="round"
     />
+  </svg>
+);
+
+export const DeleteIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <path
+      d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"
+      fill="#8C8C8C"
+    />
+  </svg>
+);
+export const WarningIcon = ({ size, fill }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 96 96"
+    fill="none"
+  >
+    <g clip-path="url(#clip0_1_2)">
+      <path
+        d="M48 8C25.92 8 8 25.92 8 48C8 70.08 25.92 88 48 88C70.08 88 88 70.08 88 48C88 25.92 70.08 8 48 8ZM52 68H44V44H52V68ZM52 36H44V28H52V36Z"
+        fill={fill}
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_1_2">
+        <rect width="96" height="96" fill="white" />
+      </clipPath>
+    </defs>
   </svg>
 );

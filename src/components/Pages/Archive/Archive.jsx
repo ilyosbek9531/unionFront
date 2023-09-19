@@ -1,8 +1,7 @@
-import React from "react";
-import styles from "./Products.module.scss";
 import { Container } from "@mui/material";
 import CBreadCrumbs from "components/UI/CBreadCrumbs/CBreadCrumbs";
-import ProductsContent from "components/UI/ProductsContent/ProductsContent";
+import React from "react";
+import styles from "./Archive.module.scss";
 
 const breadcrumbItems = [
   {
@@ -10,20 +9,19 @@ const breadcrumbItems = [
     label: "Home",
   },
   {
-    label: "All Products",
+    label: "Archive",
   },
 ];
 
-const Products = () => {
+const Archive = () => {
   return (
     <Container>
-      <div className={styles.products}>
+      <div className={styles.archive}>
         <CBreadCrumbs items={breadcrumbItems} />
         <h3 className={styles.products__title}>Online magazin</h3>
-        <ProductsContent />
       </div>
     </Container>
   );
 };
 
-export default Products;
+export default Archive;

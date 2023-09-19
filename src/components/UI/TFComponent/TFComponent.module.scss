@@ -33,4 +33,10 @@
             }
        }
     }
+
+    .main{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 3fr));
+            gap: rem(12);
+    }
 }

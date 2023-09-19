@@ -1,8 +1,7 @@
-import React from "react";
 import TFComponent from "components/UI/TFComponent/TFComponent";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useGetProductDataInfinite } from "services/products.service";
-import RequirementLogin from "components/UI/RequirementLogin/RequirementLogin";
 
 const breadcrumbItems = [
   {
@@ -10,12 +9,12 @@ const breadcrumbItems = [
     label: "Home",
   },
   {
-    label: "Favorites",
+    label: "Top Products",
   },
 ];
 const skeletonCount = [1, 2, 3, 4, 5, 6];
-const userId = typeof window !== "undefined" && localStorage.getItem("user_id");
-const Favorites = () => {
+
+const TopProduct = () => {
   const { control, watch, setValue } = useForm({
     defaultValues: {
       select: {
@@ -26,9 +25,10 @@ const Favorites = () => {
   });
   const { fetchNextPage, hasNextPage, data } = useGetProductDataInfinite({
     queryParams: {
-      user_id: userId,
+      user_id: typeof window !== "undefined" && localStorage.getItem("user_id"),
+      order: "top_product",
     },
-    queryKey: "GET_PRODUCT_FAVORITE_DATA_INFINITE",
+    queryKey: "GET_PRODUCT_TOP_PRODUCT_DATA_INFINITE",
   });
 
   const flattenedArray = data?.pages?.flatMap((obj) => obj.datas ?? []);
@@ -36,14 +36,15 @@ const Favorites = () => {
     <TFComponent
       control={control}
       breadcrumbItems={breadcrumbItems}
-      title={"Favorites"}
+      title={"Top Products"}
       fetchNextPage={fetchNextPage}
       hasNextPage={hasNextPage}
       data={data}
       flattenedArray={flattenedArray}
       skeletonCount={skeletonCount}
+      visible={false}
     />
   );
 };
 
-export default Favorites;
+export default TopProduct;

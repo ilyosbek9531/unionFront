@@ -30,6 +30,7 @@ const TFComponent = ({
   breadcrumbItems,
   title,
   skeletonCount,
+  visible,
 }) => {
   return (
     <Container>
@@ -38,8 +39,13 @@ const TFComponent = ({
         <div className={styles.content_wrapper}>
           <h3 className={styles.products__title}>{title}</h3>
           <div className={styles.buttons}>
-            <span>Barchasini o'chirish</span>
-            <CSelect name="select" control={control} options={selectOptions} />
+            {visible ? <span>Barchasini o'chirish</span> : ""}
+            <CSelect
+              name="select"
+              control={control}
+              options={selectOptions}
+              className={styles.cselect}
+            />
           </div>
         </div>
         <main>

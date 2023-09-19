@@ -12,7 +12,7 @@ const menuItems = [
     label: "Mahsulotlar",
     children: [
       { label: "All products", link: "/products" },
-      { label: "Top products", link: "/products" },
+      { label: "Top products", link: "/topproducts" },
     ],
   },
   {

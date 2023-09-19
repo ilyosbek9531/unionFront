@@ -4,7 +4,8 @@ import { queryClient, requestUnion, requestUnionToken } from "./http-client";
 const mainService = {
   getBanner: (queryParams) =>
     requestUnion.get("/banner", { params: queryParams }),
-  // getTopProducts: (queryParams)=> requestUnion.get("/", {params: queryParams}),
+  getTopProducts: (queryParams) =>
+    requestUnion.get("/product", { params: queryParams }),
   getCategory: (queryParams) =>
     requestUnion.get("category", { params: queryParams }),
   getUniversities: (queryParams) =>
@@ -20,7 +21,7 @@ export const useGetBanner = ({ queryParams }) => {
 
 export const useGetTopProducts = ({ queryParams }) => {
   return useQuery(["GET_TOP_PRODUCTS", queryParams], async () => {
-    return await mainService.getBanner(queryParams);
+    return await mainService.getTopProducts(queryParams);
   });
 };
 

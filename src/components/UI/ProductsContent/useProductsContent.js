@@ -26,6 +26,7 @@ const useProductsContent = () => {
       category_id: query.category,
       university_id: query.university,
       rating: query.rating,
+      search: watch("search"),
     },
     queryKey: "GET_PRODUCT_DATA_INFINITE",
   });

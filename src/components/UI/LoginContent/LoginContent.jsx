@@ -41,7 +41,7 @@ const LoginContent = () => {
         router.push("/");
         setTimeout(() => {
           window.location.reload();
-        }, 500);
+        }, 700);
       } else {
         router.push("/registration");
       }

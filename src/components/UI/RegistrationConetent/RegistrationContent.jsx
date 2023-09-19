@@ -29,7 +29,7 @@ const RegistrationContent = () => {
       router.push("/");
       setTimeout(() => {
         window.location.reload();
-      }, 500);
+      }, 700);
     },
     onError: (err) => {},
   });

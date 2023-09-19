@@ -72,10 +72,12 @@ const HeaderAssets = () => {
               <div className={styles.assets__items__item__count}>2</div>
             </div>
           </Link>
-          <div className={styles.assets__items__item}>
-            <BasketIcon />
-            <div className={styles.assets__items__item__count}>76</div>
-          </div>
+          <Link href="/cart">
+            <div className={styles.assets__items__item}>
+              <BasketIcon />
+              <div className={styles.assets__items__item__count}>76</div>
+            </div>
+          </Link>
           {token ? (
             <div className={styles.item}>
               <h3 className={styles.first_letter}>
