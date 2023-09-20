@@ -36,7 +36,7 @@ export default createTheme({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          "@media (max-width: 768px)": {
+          "@media (max-width: 1000px)": {
             height: `${rem(40)}`,
             lineHeight: `${rem(16)} !important`,
           },
@@ -75,9 +75,9 @@ export default createTheme({
             maxWidth: "1248px",
             width: "100%",
           },
-          "@media (max-width:768px)": {
-            paddingLeft: rem(24),
-            paddingRight: rem(24),
+          "@media (max-width:1000px)": {
+            paddingLeft: rem(12),
+            paddingRight: rem(12),
           },
         },
       },
@@ -97,7 +97,7 @@ export default createTheme({
       fontWeight: 500,
       lineHeight: rem(75),
       color: "#222831",
-      "@media (max-width: 768px)": {
+      "@media (max-width: 1000px)": {
         fontSize: rem(50),
         fontWeight: 500,
         lineHeight: rem(75),
@@ -108,7 +108,7 @@ export default createTheme({
       fontWeight: 600,
       lineHeight: rem(54),
       color: "#222831",
-      "@media (max-width: 768px)": {
+      "@media (max-width: 1000px)": {
         fontSize: rem(36),
         fontWeight: 600,
         lineHeight: rem(54),
@@ -119,7 +119,7 @@ export default createTheme({
       fontWeight: 600,
       lineHeight: rem(42),
       color: "#222831",
-      "@media (max-width: 768px)": {
+      "@media (max-width: 1000px)": {
         fontSize: rem(36),
         fontWeight: 600,
         lineHeight: rem(54),

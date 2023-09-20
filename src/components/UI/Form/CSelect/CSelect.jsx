@@ -30,7 +30,7 @@ const CSelect = ({ name = "", control, options }) => {
         border: "1px solid #6096B4",
       },
 
-      "@media (max-width: 768px)": {
+      "@media (max-width: 1000px)": {
         height: "42px",
       },
     }),

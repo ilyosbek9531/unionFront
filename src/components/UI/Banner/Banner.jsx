@@ -14,7 +14,13 @@ const Banner = () => {
     },
   });
   return (
-    <Container>
+    <Container
+      sx={{
+        "@media (max-width:1000px)": {
+          padding: "0 !important",
+        },
+      }}
+    >
       <div className={styles.banner}>
         <Swiper
           slidesPerView={1}

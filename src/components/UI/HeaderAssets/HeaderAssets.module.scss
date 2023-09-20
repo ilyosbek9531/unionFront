@@ -4,6 +4,10 @@
   @include align-items-center;
   gap: rem(60);
 
+  @media (max-width: 1000px) {
+    display: none;
+  }
+
   &__items {
     @include align-items-center;
     gap: rem(40);
@@ -172,12 +176,12 @@
     }
   }
 
-  .buttons{
+  .buttons {
     display: flex;
     flex-direction: row;
     gap: 1rem;
 
-    span{
+    span {
       display: flex;
       padding: 16px 12px;
       justify-content: center;
