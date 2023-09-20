@@ -1,0 +1,109 @@
+@import "styles/unit.scss";
+
+.cart_wrapper {
+  display: flex;
+  margin-bottom: rem(30);
+
+  .image_wrapper {
+    max-width: 269px;
+    max-height: 180px;
+    // width: 100%;
+    // height: 100%;
+    border-radius: 10px;
+    border: 1px solid #dbdbdb;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border: 2px solid red;
+      object-fit: cover;
+    }
+  }
+  .contents {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    gap: 39px;
+    border-radius: 10px;
+    border-top: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    background: #fff;
+
+    .main_content{
+        @include justify-content-between;
+        gap: rem(41);
+
+        .title_subtitle{
+            display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                .title{
+                    color: #000;
+                        font-family: Poppins;
+                        font-size: 24px;
+                        font-weight: 600;
+                        line-height: 18px;
+                        text-transform: uppercase;
+                }
+                .subtitle{
+                    color: #000;
+                        font-family: Poppins;
+                        font-size: 16px;
+                        font-weight: 400;
+                        line-height: 18px;
+                }
+        }
+        .price{
+            color: #000;
+                font-family: Inter;
+                font-size: 28px;
+                font-weight: 600;
+        }
+    }
+
+    .buttons_wrapper{
+        @include justify-content-between;
+
+        .remove_like_content{
+            @include element-center;
+            gap: rem(30);
+
+            .like{
+                @include element-center;
+                gap:rem(10);
+                cursor: pointer;
+                color: #8C8C8C;
+                    font-family: Poppins;
+                    font-size: 20px;
+                    font-weight: 400;
+                    padding: 10px;
+
+                    &:hover{
+                        background: #f4f1f1;
+                        border-radius:10px;
+                    }
+            }
+        }
+
+        .count_content{
+            @include align-items-center;
+            gap: rem(16);
+
+            span{
+                @include align-items-center;
+                border-radius: 39px;
+                border: 1px solid #00ADB5;
+                cursor: pointer;
+            }
+            p{
+                color: #000;
+                    font-family: Poppins;
+                    font-size: 26px;
+                    font-weight: 600;
+            }
+        }
+    }
+  }
+}

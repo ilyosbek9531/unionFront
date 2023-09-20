@@ -32,6 +32,8 @@ const Favorites = () => {
   });
 
   const flattenedArray = data?.pages?.flatMap((obj) => obj.datas ?? []);
+
+  console.log("filtered", flattenedArray);
   return (
     <TFComponent
       control={control}
@@ -42,6 +44,9 @@ const Favorites = () => {
       data={data}
       flattenedArray={flattenedArray}
       skeletonCount={skeletonCount}
+      warningText="Choose favourite product"
+      page="products"
+      contentButton="Go to All Products page"
     />
   );
 };

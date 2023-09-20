@@ -21,7 +21,7 @@ const CartSingleProduct = ({ title, count, price, image_url }) => {
               Sleeveless top with an asymmetric high neck.
             </h3>
           </div>
-          <h1 className={styles.price}>{`$${price}`}</h1>
+          <h1 className={styles.price}>{`${price}`}</h1>
         </div>
 
         <div className={styles.buttons_wrapper}>
@@ -37,11 +37,11 @@ const CartSingleProduct = ({ title, count, price, image_url }) => {
           </div>
           <div className={styles.count_content}>
             <span>
-              <ArrowRightIcon size="30" fill="#00ADB5" />
+              <ArrowLeftIcon size="30" fill="#00ADB5" />
             </span>
             <p>{count}</p>
             <span>
-              <ArrowLeftIcon size="30" fill="#00ADB5" />
+              <ArrowRightIcon size="30" fill="#00ADB5" />
             </span>
           </div>
         </div>

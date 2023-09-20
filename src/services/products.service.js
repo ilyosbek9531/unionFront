@@ -1,5 +1,5 @@
-import { useInfiniteQuery } from "react-query";
-import { request, requestUnion } from "./http-client";
+import { useInfiniteQuery, useMutation } from "react-query";
+import { request, requestUnion, requestUnionToken } from "./http-client";
 
 const productService = {
   getProductData: (queryParams, pageParam) =>
@@ -14,6 +14,7 @@ const productService = {
     requestUnion.get("/category", { params: queryParams }),
   getUniversities: (queryParams) =>
     requestUnion.get("/university", { params: queryParams }),
+  postFavourite: (data) => requestUnionToken.post("/favourite_product", data),
 };
 
 export const useGetProductDataInfinite = ({ queryParams, queryKey }) => {
@@ -50,4 +51,11 @@ export const useGetUniversities = ({ queryParams }) => {
   return useQuery(["GET_UNIVERSITIES", queryParams], async () => {
     return await productService.getUniversities(queryParams);
   });
+};
+
+export const usePostFavourite = (mutationSettings) => {
+  return useMutation(
+    (data) => productService.postFavourite(data),
+    mutationSettings
+  );
 };

@@ -4,6 +4,7 @@ import { Container } from "@mui/material";
 import CBreadCrumbs from "components/UI/CBreadCrumbs/CBreadCrumbs";
 import CartContent from "components/UI/CartContent/CartContent";
 import RequirementLogin from "components/UI/RequirementLogin/RequirementLogin";
+import TopProducts from "components/UI/TopProducts/TopProducts";
 
 const breadcrumbItems = [
   {
@@ -36,10 +37,18 @@ const Cart = () => {
               setChangeCount={setChangeCount}
               changeCount={changeCount}
             />
+            <div className={styles.offerProducts}>
+              <h2 className={styles.title}>Tavsiya etilgan tovarlar</h2>
+              <TopProducts visible={false} />
+            </div>
           </>
         ) : (
           <span className={styles.login}>
-            <RequirementLogin />
+            <RequirementLogin
+              warningText="Please Login from website"
+              contentButton="Go to Login page"
+              page="login"
+            />
           </span>
         )}
       </div>

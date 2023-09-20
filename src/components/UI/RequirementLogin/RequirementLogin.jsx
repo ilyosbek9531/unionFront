@@ -3,15 +3,15 @@ import styles from "./RequirementLogin.module.scss";
 import Link from "next/link";
 import { WarningIcon } from "components/Icons";
 
-const RequirementLogin = () => {
+const RequirementLogin = ({ warningText, page, contentButton }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.icon_text}>
         <WarningIcon size="96" fill="red" />
-        <h3 className={styles.text}>Please login from website</h3>
+        <h3 className={styles.text}>{warningText}</h3>
       </div>
-      <Link href="/login">
-        <span className={styles.pushLogin}>Go to login</span>
+      <Link href={`/${page}`}>
+        <span className={styles.pushLogin}>{contentButton}</span>
       </Link>
     </div>
   );

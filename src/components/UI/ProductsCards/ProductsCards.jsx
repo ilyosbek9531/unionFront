@@ -12,6 +12,7 @@ const ProductsCards = ({
   data,
   flattenedArray,
 }) => {
+  console.log("flattenedArray", flattenedArray);
   return (
     <main>
       <InfiniteScroll
@@ -38,12 +39,14 @@ const ProductsCards = ({
         {flattenedArray?.map((item) => (
           <ProductCard
             key={item.id}
+            id={item.id}
             img={item.image_url}
             name={item.title}
             rate={item.rating}
             price={item.price}
-            description={item.description}
+            descriptionr={item.description}
             size={item.size}
+            is_favourite={item.is_favourite}
           />
         ))}
       </InfiniteScroll>

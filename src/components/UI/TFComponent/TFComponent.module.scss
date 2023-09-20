@@ -39,4 +39,8 @@
         grid-template-columns: repeat(auto-fit, minmax(15rem, 3fr));
             gap: rem(12);
     }
+
+        .warning {
+            @include element-center
+        }
 }

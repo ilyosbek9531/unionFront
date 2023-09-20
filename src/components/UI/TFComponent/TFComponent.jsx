@@ -5,6 +5,7 @@ import styles from "./TFComponent.module.scss";
 import CSelect from "../Form/CSelect/CSelect";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ProductCard from "../ProductCard/ProductCard";
+import RequirementLogin from "../RequirementLogin/RequirementLogin";
 
 const selectOptions = [
   {
@@ -31,6 +32,9 @@ const TFComponent = ({
   title,
   skeletonCount,
   visible,
+  warningText,
+  page,
+  contentButton,
 }) => {
   return (
     <Container>
@@ -48,41 +52,51 @@ const TFComponent = ({
             />
           </div>
         </div>
-        <main>
-          <InfiniteScroll
-            dataLength={data?.pages?.flat()?.length || 10}
-            next={fetchNextPage}
-            hasMore={hasNextPage}
-            loader={skeletonCount.map((count) => (
-              <Skeleton
-                key={count}
-                variant="rectangular"
-                width={"100%"}
-                height={"358.81px"}
-              />
-            ))}
-            endMessage={
-              <>
-                <p style={{ textAlign: "center" }}>
-                  <b>Yay! You have seen it all</b>
-                </p>
-              </>
-            }
-            className={styles.main}
-          >
-            {flattenedArray?.map((item) => (
-              <ProductCard
-                key={item.id}
-                img={item.image_url}
-                name={item.title}
-                rate={item.rating}
-                price={item.price}
-                description={item.description}
-                size={item.size}
-              />
-            ))}
-          </InfiniteScroll>
-        </main>
+        {flattenedArray?.length == 0 ? (
+          <span className={styles.warning}>
+            <RequirementLogin
+              warningText={warningText}
+              contentButton={contentButton}
+              page={page}
+            />
+          </span>
+        ) : (
+          <main>
+            <InfiniteScroll
+              dataLength={data?.pages?.flat()?.length || 10}
+              next={fetchNextPage}
+              hasMore={hasNextPage}
+              loader={skeletonCount.map((count) => (
+                <Skeleton
+                  key={count}
+                  variant="rectangular"
+                  width={"100%"}
+                  height={"358.81px"}
+                />
+              ))}
+              endMessage={
+                <>
+                  <p style={{ textAlign: "center" }}>
+                    <b>Yay! You have seen it all</b>
+                  </p>
+                </>
+              }
+              className={styles.main}
+            >
+              {flattenedArray?.map((item) => (
+                <ProductCard
+                  key={item.id}
+                  img={item.image_url}
+                  name={item.title}
+                  rate={item.rating}
+                  price={item.price}
+                  description={item.description}
+                  size={item.size}
+                />
+              ))}
+            </InfiniteScroll>
+          </main>
+        )}
       </div>
     </Container>
   );
