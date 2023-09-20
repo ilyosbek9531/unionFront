@@ -28,8 +28,6 @@ const TopProducts = ({ visible = true }) => {
         ""
       )}
       <Swiper
-        slidesPerView={5}
-        spaceBetween={20}
         pagination={{
           clickable: true,
         }}
@@ -37,6 +35,28 @@ const TopProducts = ({ visible = true }) => {
         modules={[Navigation]}
         loop
         className="custom-swiper-card"
+        breakpoints={{
+          300: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          500: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          700: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          900: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
+          1200: {
+            slidesPerView: 5,
+            spaceBetween: 20,
+          },
+        }}
       >
         {data?.datas?.map((item, index) => (
           <SwiperSlide key={index}>

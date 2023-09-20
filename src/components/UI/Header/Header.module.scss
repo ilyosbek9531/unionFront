@@ -7,23 +7,14 @@
   z-index: 99;
   background-color: #fff;
   width: 100%;
+
+  @media (max-width: 1000px) {
+    padding: 10px 0;
+  }
   .box {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .langs {
-      ul {
-        list-style: none;
-        display: flex;
-        column-gap: rem(40);
-        a {
-          font-size: rem(16);
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
-    }
     .logo {
       color: var(--text-color);
       font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",

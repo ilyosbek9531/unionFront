@@ -15,7 +15,7 @@ const StyledAccordion = styled(Accordion)({
     flexDirection: "column",
     justifyContent: "center",
 
-    "@media (max-width: 768px)": {
+    "@media (max-width: 1000px)": {
       padding: "6px 0",
     },
   },

@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { token, user_first_name } from "services/http-client";
 import Modal from "../Modal/Modal";
+import DrawerMenu from "../DrawerMenu/DrawerMenu";
 
 const langs = [
   {
@@ -131,6 +132,8 @@ const HeaderAssets = () => {
           </div>
         </div>
       </Modal>
+
+      <DrawerMenu />
     </>
   );
 };

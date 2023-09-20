@@ -2,4 +2,8 @@
 
 .banner {
   padding-top: rem(50);
+
+  @media (max-width: 1000px) {
+    padding-top: 0;
+  }
 }
