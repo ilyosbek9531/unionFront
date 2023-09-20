@@ -1,0 +1,90 @@
+@import "styles/unit.scss";
+
+.registration {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  gap: 30px;
+
+  .title {
+    color: #000;
+    font-family: Poppins;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: rem(20);
+  padding: 0 rem(30);
+
+  label {
+    color: #000;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+
+  input {
+    display: flex;
+    // max-width: 500px;
+    width: 100%;
+    padding: 18px 20px;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 8px;
+    border: 2px solid #ebebeb;
+    background: #fff;
+    font-size: 20px;
+    outline: none;
+
+    &::placeholder {
+      color: #8c8c8c;
+      font-family: Poppins;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.08px;
+    }
+
+    &:focus {
+      border: 2px solid #00adb5;
+    }
+  }
+
+  .errorMessage{
+    color: #DE1616;
+      font-family: Poppins;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+  }
+
+  button {
+    display: flex;
+    // width: 500px;
+    // height: 60px;
+    padding: 18px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background: #00adb5;
+    border-radius: 8px;
+    background: #00adb5;
+    border: none;
+    color: #fff;
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}

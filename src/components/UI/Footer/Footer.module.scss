@@ -52,9 +52,17 @@
   }
 
   &__bottom {
-    padding: rem(20) 0;
-    text-align: center;
+    padding: rem(20);
+    @include justify-content-between;
     border-top: 1px solid #ffffff;
     margin-top: rem(80);
+
+    span{
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #116bf4;
+      cursor: pointer;
+    }
   }
 }

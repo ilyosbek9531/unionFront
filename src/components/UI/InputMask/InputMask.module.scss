@@ -1,0 +1,13 @@
+.inputMask_wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .errMsg{
+        color: #DE1616;
+            font-family: Poppins;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+    }
+}

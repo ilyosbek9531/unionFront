@@ -9,26 +9,25 @@ const ProductsContent = () => {
   const {
     control,
     setValue,
-    setCategory,
-    setUniversity,
-    category,
-    university,
+    fetchNextPage,
+    hasNextPage,
+    data,
+    flattenedArray,
   } = useProductsContent();
+
   return (
     <div className={styles.content}>
       <div className={styles.content__filter}>
-        <ProductsFilter
-          control={control}
-          setValue={setValue}
-          setCategory={setCategory}
-          setUniversity={setUniversity}
-          category={category}
-          university={university}
-        />
+        <ProductsFilter control={control} setValue={setValue} />
       </div>
       <div className={styles.content__right}>
         <ProductSearchSelect control={control} />
-        <ProductsCards />
+        <ProductsCards
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          data={data}
+          flattenedArray={flattenedArray}
+        />
       </div>
     </div>
   );

@@ -29,4 +29,21 @@
       }
     }
   }
+
+  .offerProducts{
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+
+    .title{
+      padding-left: 25px;
+      width: max-content;
+      color: #000;
+        font-family: Poppins;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+  }
 }

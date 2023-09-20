@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useGetProductDataInfinite } from "services/products.service";
 
 const useProductsContent = () => {
-  const [category, setCategory] = useState("");
-  const [university, setUniversity] = useState("");
+  const { query } = useRouter();
   const { control, watch, setValue } = useForm({
     defaultValues: {
-      price: [0, 2000000],
+      price: [0, 100000],
       "price-from": 0,
-      "price-to": 2000000,
+      "price-to": 100000,
       "category-search": "",
       "university-search": "",
       select: {
@@ -18,14 +19,28 @@ const useProductsContent = () => {
     },
   });
 
-  console.log("price", watch("price"));
-  console.log("price-from", watch("price-from"));
-  console.log("price-to", watch("price-to"));
-  console.log("category-search", watch("category-search"));
-  console.log("university-search", watch("university-search"));
-  console.log("category", category);
-  console.log("university", university);
-  console.log("search", watch("search"));
+  const { fetchNextPage, hasNextPage, data } = useGetProductDataInfinite({
+    queryParams: {
+      min_price: watch("price-from"),
+      max_price: watch("price-to"),
+      category_id: query.category,
+      university_id: query.university,
+      rating: query.rating,
+      search: watch("search"),
+    },
+    queryKey: "GET_PRODUCT_DATA_INFINITE",
+  });
+
+  const flattenedArray = data?.pages?.flatMap((obj) => obj.datas ?? []);
+
+  // console.log("price", watch("price"));
+  // console.log("price-from", watch("price-from"));
+  // console.log("price-to", watch("price-to"));
+  // console.log("category-search", watch("category-search"));
+  // console.log("university-search", watch("university-search"));
+  // console.log("category", category);
+  // console.log("university", university);
+  // console.log("search", watch("search"));
 
   useEffect(() => {
     setValue("price-from", watch("price")?.[0]);
@@ -39,10 +54,10 @@ const useProductsContent = () => {
   return {
     control,
     setValue,
-    setCategory,
-    setUniversity,
-    category,
-    university,
+    fetchNextPage,
+    hasNextPage,
+    data,
+    flattenedArray,
   };
 };
 

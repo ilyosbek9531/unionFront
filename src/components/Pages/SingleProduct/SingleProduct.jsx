@@ -5,6 +5,8 @@ import { Container } from "@mui/material";
 import { ArrowRightIcon } from "components/Icons";
 import useSingleProduct from "./useSingleProduct";
 import SingleProductContent from "components/UI/SingleProductContent/SingleProductContent";
+import ProductsCards from "components/UI/ProductsCards/ProductsCards";
+import TopProducts from "components/UI/TopProducts/TopProducts";
 
 const breadcrumbItems = [
   {
@@ -40,6 +42,11 @@ const SingleProduct = () => {
             </div>
           </div>
           <SingleProductContent />
+
+          <div className={styles.offerProducts}>
+            <h2 className={styles.title}>Tavsiya etilgan tovarlar</h2>
+            <TopProducts visible={false} />
+          </div>
         </div>
       </Container>
     </div>

@@ -1,0 +1,13 @@
+@import "styles/unit.scss";
+
+.archive {
+    @include direction-column;
+    gap: rem(30);
+    padding: 50px 0;
+
+    &__title {
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 54px;
+    }
+}

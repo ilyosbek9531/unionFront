@@ -2,36 +2,18 @@ import React from "react";
 import styles from "./Universities.module.scss";
 import { Container } from "@mui/material";
 import Marquee from "react-fast-marquee";
-
-const universitiesMarque = [
-  {
-    id: 1,
-    img: "/images/university1.png",
-    name: "Toshkent Axborot Texnologiya Unversteti",
-  },
-  {
-    id: 2,
-    img: "/images/university1.png",
-    name: "Toshkent Axborot Texnologiya Unversteti",
-  },
-  {
-    id: 3,
-    img: "/images/university1.png",
-    name: "Toshkent Axborot Texnologiya Unversteti",
-  },
-  {
-    id: 4,
-    img: "/images/university1.png",
-    name: "Toshkent Axborot Texnologiya Unversteti",
-  },
-  {
-    id: 5,
-    img: "/images/university1.png",
-    name: "Toshkent Axborot Texnologiya Unversteti",
-  },
-];
+import { useGetUniversities } from "services/main.service";
+import { useRouter } from "next/router";
 
 const Universities = () => {
+  const { push } = useRouter();
+  const { data } = useGetUniversities({
+    queryParams: {
+      limit: 0,
+      offset: 0,
+    },
+  });
+
   return (
     <div className={styles.universities}>
       <Container>
@@ -47,10 +29,13 @@ const Universities = () => {
           gradient={true}
           gradientColor={[255, 255, 255]}
         >
-          {universitiesMarque.map((el, index) => (
-            <div className={styles.marquee__item}>
-              <img src={el.img} alt="university" />
-              <span>{el.name}</span>
+          {data?.datas?.map((el, index) => (
+            <div
+              className={styles.marquee__item}
+              onClick={() => push(`/products?university=${el.id}`)}
+            >
+              <img src={el.image_url} alt="university" />
+              <span>{el.description}</span>
             </div>
           ))}
         </Marquee>
@@ -63,10 +48,13 @@ const Universities = () => {
           gradient={true}
           gradientColor={[255, 255, 255]}
         >
-          {universitiesMarque.map((el, index) => (
-            <div className={styles.marquee__item}>
-              <img src={el.img} alt="university" />
-              <span>{el.name}</span>
+          {data?.datas?.map((el, index) => (
+            <div
+              className={styles.marquee__item}
+              onClick={() => push(`/products?university=${el.id}`)}
+            >
+              <img src={el.image_url} alt="university" />
+              <span>{el.description}</span>
             </div>
           ))}
         </Marquee>

@@ -207,6 +207,51 @@ input::-webkit-outer-spin-button {
 .custom-thumbnail-gallery {
   display: flex;
   align-items: center;
+  border: 2px solid red;
+}
+.custom-image-gallery{
+  max-width: 794px;
+  width: 100%;
+  position: relative;
+  gap: 10rem;
+
+
+  // .image-gallery-thumbnail{
+  //   max-width: 1150px !important;
+  //   max-height: 94px !important;
+  //   border: 2px solid red;
+  //   margin-bottom: 2rem;
+  //   border-radius: 6px;
+  // }  
+    .arrow-up{
+      position: absolute;
+      top: -10px;
+      left: 47px;
+      @include align-items-center;
+      background-color: #00adb5;
+      outline: none;
+      border: none;
+      padding: 4px;
+      border-radius:40px;
+
+
+      .icon{
+        transform: rotate(180deg);
+        border: 2px solid red;
+      }
+    }
+    .arrow-down{
+      position: absolute;
+      bottom: -10px;
+      left: 47px;
+          @include align-items-center;
+        background-color: #00adb5;
+        outline: none;
+        border: none;
+        padding: 4px;
+        border-radius: 40px;
+    }
+
 }
 
 .scroll-buttons {

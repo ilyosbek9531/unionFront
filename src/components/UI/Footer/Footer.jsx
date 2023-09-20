@@ -67,6 +67,12 @@ export function Footer() {
       </Container>
       <div className={styles.footer__bottom}>
         YourBrend.uz internet-do'konlari. Barcha huquqlar himoyalangan.
+        <p>
+          Created by{" "}
+          <Link href="">
+            <span>Digital Solutions</span>
+          </Link>
+        </p>
       </div>
     </footer>
   );

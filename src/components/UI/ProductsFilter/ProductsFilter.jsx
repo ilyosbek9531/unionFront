@@ -4,14 +4,7 @@ import { FilterIcon } from "components/Icons";
 import FilterPrice from "../FilterPrice/FilterPrice";
 import FilterRadioButtons from "../FilterRadioButtons/FilterRadioButtons";
 
-const ProductsFilter = ({
-  control,
-  setValue,
-  setCategory,
-  setUniversity,
-  category,
-  university,
-}) => {
+const ProductsFilter = ({ control, setValue }) => {
   return (
     <div className={styles.filter}>
       <div className={styles.filter__title}>
@@ -19,13 +12,7 @@ const ProductsFilter = ({
         <FilterIcon />
       </div>
       <FilterPrice control={control} setValue={setValue} />
-      <FilterRadioButtons
-        control={control}
-        setCategory={setCategory}
-        setUniversity={setUniversity}
-        category={category}
-        university={university}
-      />
+      <FilterRadioButtons control={control} />
     </div>
   );
 };

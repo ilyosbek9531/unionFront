@@ -1,30 +1,69 @@
 import React from "react";
 import CAccordion from "../CAccordion/CAccordion";
-import { Box } from "@mui/material";
+import { Box, Rating } from "@mui/material";
 import Input from "../Form/Input/Input";
 import { SearchIcon } from "components/Icons";
-import CRadioButtons from "../CRadioButtons/CRadioButtons";
+import { useGetCategories, useGetUniversities } from "services/main.service";
+import GroupedRadioButton from "../GroupedRadioButton/GroupedRadioButton";
+import { useWatch } from "react-hook-form";
 
-const options = [
-  { label: "hi", value: "1" },
-  { label: "hello", value: "2" },
-  { label: "welcome", value: "3" },
-  { label: "bitch", value: "4" },
-  { label: "baklashka", value: "5" },
-  { label: "xotin", value: "6" },
-  { label: "noProblem", value: "7" },
-  { label: "cola", value: "8" },
-  { label: "pepsi", value: "9" },
-  { label: "xurrak", value: "10" },
+const Ratings = [
+  {
+    label: <Rating name="read-only" value={"1"} readOnly />,
+    value: "1",
+  },
+  {
+    label: <Rating name="read-only" value={"2"} readOnly />,
+    value: "2",
+  },
+  {
+    label: <Rating name="read-only" value={"3"} readOnly />,
+    value: "3",
+  },
+  {
+    label: <Rating name="read-only" value={"4"} readOnly />,
+    value: "4",
+  },
+  {
+    label: <Rating name="read-only" value={"5"} readOnly />,
+    value: "5",
+  },
 ];
 
-const FilterRadioButtons = ({
-  control,
-  setCategory,
-  setUniversity,
-  category,
-  university,
-}) => {
+const FilterRadioButtons = ({ control }) => {
+  const categorySearch = useWatch({ control, name: "category-search" });
+  const universitySearch = useWatch({ control, name: "university-search" });
+
+  const { data: categories } = useGetCategories({
+    queryParams: {
+      limit: 0,
+      offset: 0,
+      search: categorySearch,
+    },
+  });
+
+  const { data: unversities } = useGetUniversities({
+    queryParams: {
+      limit: 0,
+      offset: 0,
+      search: universitySearch,
+    },
+  });
+
+  const getCategory = categories?.datas.map((item) => {
+    return {
+      label: item.name,
+      value: item.id,
+    };
+  });
+
+  const getUniversity = unversities?.datas.map((item) => {
+    return {
+      label: item.title,
+      value: item.id,
+    };
+  });
+
   return (
     <div>
       <CAccordion title="Kategoriyalar" id={2}>
@@ -36,12 +75,11 @@ const FilterRadioButtons = ({
             name="category-search"
             placeholder="Kategoriyalar"
           />
-          <CRadioButtons
-            options={options}
+          <GroupedRadioButton
             control={control}
             name="category"
-            setCategory={setCategory}
-            category={category}
+            options={getCategory}
+            onQuery={true}
           />
         </Box>
       </CAccordion>
@@ -54,12 +92,21 @@ const FilterRadioButtons = ({
             name="university-search"
             placeholder="Unverstetlar"
           />
-          <CRadioButtons
-            options={options}
+          <GroupedRadioButton
             control={control}
             name="university"
-            setUniversity={setUniversity}
-            university={university}
+            options={getUniversity}
+            onQuery={true}
+          />
+        </Box>
+      </CAccordion>
+      <CAccordion title="Ratings" id={2}>
+        <Box display="flex" flexDirection="column" rowGap="20px">
+          <GroupedRadioButton
+            control={control}
+            name="rating"
+            options={Ratings}
+            onQuery={true}
           />
         </Box>
       </CAccordion>

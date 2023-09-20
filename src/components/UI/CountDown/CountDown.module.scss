@@ -1,0 +1,23 @@
+.countdownTimer{
+    span{
+        font-size: 18px;
+        color: #00adb5;
+        cursor: pointer;
+        letter-spacing: 1.2px;
+
+    }
+
+    .timer{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        p{
+                color: #000;
+                font-family: Poppins;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+        }
+        
+    }
+}

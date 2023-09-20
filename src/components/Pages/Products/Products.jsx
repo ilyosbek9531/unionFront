@@ -10,7 +10,7 @@ const breadcrumbItems = [
     label: "Home",
   },
   {
-    label: "Harward",
+    label: "All Products",
   },
 ];
 
