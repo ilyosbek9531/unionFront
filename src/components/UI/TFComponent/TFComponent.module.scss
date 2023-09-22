@@ -36,8 +36,20 @@
 
     .main{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(15rem, 3fr));
+        grid-template-columns: repeat(4, minmax(15rem, 5fr));
             gap: rem(12);
+            
+            @media (width<=550px) {
+                grid-template-columns: repeat(1, minmax(15rem, 5fr));
+            }
+
+                        @media (550px < width<=800px) {
+                            grid-template-columns: repeat(2, minmax(15rem, 5fr));
+                        }
+
+                                                @media (800px < width<=1200px) {
+                                                    grid-template-columns: repeat(3, minmax(15rem, 5fr));
+                                                }
     }
 
         .warning {

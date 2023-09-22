@@ -12,7 +12,6 @@ const ProductsCards = ({
   data,
   flattenedArray,
 }) => {
-  console.log("flattenedArray", flattenedArray);
   return (
     <main>
       <InfiniteScroll
@@ -27,13 +26,6 @@ const ProductsCards = ({
             height={"358.81px"}
           />
         ))}
-        endMessage={
-          <>
-            <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          </>
-        }
         className={styles.main}
       >
         {flattenedArray?.map((item) => (

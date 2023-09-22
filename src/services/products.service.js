@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useMutation } from "react-query";
+import { useInfiniteQuery, useMutation, useQuery } from "react-query";
 import { request, requestUnion, requestUnionToken } from "./http-client";
 
 const productService = {
@@ -15,11 +15,19 @@ const productService = {
   getUniversities: (queryParams) =>
     requestUnion.get("/university", { params: queryParams }),
   postFavourite: (data) => requestUnionToken.post("/favourite_product", data),
+  getSingleProduct: (params, queryParams) =>
+    requestUnion.get(`/product/${params}`, { params: queryParams }),
+  getSingleProductImages: (queryParams) =>
+    requestUnion.get("product_image", { params: queryParams }),
 };
 
-export const useGetProductDataInfinite = ({ queryParams, queryKey }) => {
+export const useGetProductDataInfinite = ({
+  queryParams,
+  queryKey,
+  pathname,
+}) => {
   return useInfiniteQuery(
-    [queryKey, queryParams],
+    [queryKey, queryParams, pathname],
     async ({ pageParam = { limit: 10, offset: 0 } }) => {
       return await productService
         .getProductData(queryParams, pageParam)
@@ -37,6 +45,7 @@ export const useGetProductDataInfinite = ({ queryParams, queryKey }) => {
 
         return undefined;
       },
+      cacheTime: 0,
     }
   );
 };
@@ -58,4 +67,16 @@ export const usePostFavourite = (mutationSettings) => {
     (data) => productService.postFavourite(data),
     mutationSettings
   );
+};
+
+export const useGetSingleProduct = ({ params, queryParams }) => {
+  return useQuery(["GET_SINGLE_PRODUCT", queryParams], async () => {
+    return await productService.getSingleProduct(params, queryParams);
+  });
+};
+
+export const useGetSingleProductImage = ({ queryParams }) => {
+  return useQuery(["GET_SINGLE_PRODUCT_Image", queryParams], async () => {
+    return await productService.getSingleProductImages(queryParams);
+  });
 };

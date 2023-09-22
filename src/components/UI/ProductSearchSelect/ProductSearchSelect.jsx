@@ -11,11 +11,11 @@ const selectOptions = [
   },
   {
     label: "Price high",
-    value: "high",
+    value: "price_high",
   },
   {
     label: "Price low",
-    value: "low",
+    value: "price_low",
   },
 ];
 

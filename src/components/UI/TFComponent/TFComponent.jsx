@@ -14,11 +14,11 @@ const selectOptions = [
   },
   {
     label: "Price high",
-    value: "high",
+    value: "price_high",
   },
   {
     label: "Price low",
-    value: "low",
+    value: "price_low",
   },
 ];
 
@@ -35,6 +35,7 @@ const TFComponent = ({
   warningText,
   page,
   contentButton,
+  deleteButton,
 }) => {
   return (
     <Container>
@@ -44,12 +45,16 @@ const TFComponent = ({
           <h3 className={styles.products__title}>{title}</h3>
           <div className={styles.buttons}>
             {visible ? <span>Barchasini o'chirish</span> : ""}
-            <CSelect
-              name="select"
-              control={control}
-              options={selectOptions}
-              className={styles.cselect}
-            />
+            {deleteButton ? (
+              <CSelect
+                name="select"
+                control={control}
+                options={selectOptions}
+                className={styles.cselect}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </div>
         {flattenedArray?.length == 0 ? (
@@ -74,24 +79,19 @@ const TFComponent = ({
                   height={"358.81px"}
                 />
               ))}
-              endMessage={
-                <>
-                  <p style={{ textAlign: "center" }}>
-                    <b>Yay! You have seen it all</b>
-                  </p>
-                </>
-              }
               className={styles.main}
             >
               {flattenedArray?.map((item) => (
                 <ProductCard
                   key={item.id}
+                  id={item.product_id}
                   img={item.image_url}
                   name={item.title}
                   rate={item.rating}
                   price={item.price}
-                  description={item.description}
+                  descriptionr={item.description}
                   size={item.size}
+                  is_favourite={item.is_favourite}
                 />
               ))}
             </InfiniteScroll>

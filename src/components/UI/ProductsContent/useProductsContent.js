@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import { useGetProductDataInfinite } from "services/products.service";
 
 const useProductsContent = () => {
+  const userId =
+    typeof window !== "undefined" && localStorage.getItem("user_id");
+
   const { query } = useRouter();
   const { control, watch, setValue } = useForm({
     defaultValues: {
@@ -27,6 +30,8 @@ const useProductsContent = () => {
       university_id: query.university,
       rating: query.rating,
       search: watch("search"),
+      user_id: userId,
+      order: watch("select").value,
     },
     queryKey: "GET_PRODUCT_DATA_INFINITE",
   });

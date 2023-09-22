@@ -23,7 +23,6 @@ const breadcrumbItems = [
 ];
 
 const SingleProduct = () => {
-  const {} = useSingleProduct();
   return (
     <div className={styles.single}>
       <Container>

@@ -1,8 +1,8 @@
 import React from "react";
 import TFComponent from "components/UI/TFComponent/TFComponent";
 import { useForm } from "react-hook-form";
-import { useGetProductDataInfinite } from "services/products.service";
 import RequirementLogin from "components/UI/RequirementLogin/RequirementLogin";
+import { useGetFavouriteDataInfinite } from "services/favourites.service";
 
 const breadcrumbItems = [
   {
@@ -15,6 +15,7 @@ const breadcrumbItems = [
 ];
 const skeletonCount = [1, 2, 3, 4, 5, 6];
 const userId = typeof window !== "undefined" && localStorage.getItem("user_id");
+
 const Favorites = () => {
   const { control, watch, setValue } = useForm({
     defaultValues: {
@@ -24,16 +25,16 @@ const Favorites = () => {
       },
     },
   });
-  const { fetchNextPage, hasNextPage, data } = useGetProductDataInfinite({
+  const { fetchNextPage, hasNextPage, data } = useGetFavouriteDataInfinite({
+    params: userId,
     queryParams: {
-      user_id: userId,
+      order: watch("select").value,
     },
-    queryKey: "GET_PRODUCT_FAVORITE_DATA_INFINITE",
+    queryKey: "GET_FAVOURITE_DATA_INFINITE",
   });
 
   const flattenedArray = data?.pages?.flatMap((obj) => obj.datas ?? []);
 
-  console.log("filtered", flattenedArray);
   return (
     <TFComponent
       control={control}
@@ -47,6 +48,8 @@ const Favorites = () => {
       warningText="Choose favourite product"
       page="products"
       contentButton="Go to All Products page"
+      deleteButton={true}
+      visible={false}
     />
   );
 };

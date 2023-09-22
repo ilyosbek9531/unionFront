@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import { token, user_first_name } from "services/http-client";
 import Modal from "../Modal/Modal";
 import DrawerMenu from "../DrawerMenu/DrawerMenu";
+import { useGetFavouriteCount } from "services/favourites.service";
 
 const langs = [
   {
@@ -37,7 +38,16 @@ const HeaderAssets = () => {
   const currentLang = langs.find((lang) => router.locale == lang.key);
   const [openModal, setOpenModal] = useState(false);
   const handleOpenClose = () => setOpenModal(false);
+  const userId =
+    typeof window !== "undefined" && localStorage.getItem("user_id");
 
+  const { data } = useGetFavouriteCount({
+    params: userId,
+    queryParams: {
+      limit: 1,
+      offset: 0,
+    },
+  });
   const handleLogOut = () => {
     localStorage.clear();
     setOpenModal(false);
@@ -70,7 +80,14 @@ const HeaderAssets = () => {
           <Link href="/favorites">
             <div className={styles.assets__items__item}>
               <LikeIcon />
-              <div className={styles.assets__items__item__count}>2</div>
+
+              {data?.count ? (
+                <div className={styles.assets__items__item__count}>
+                  {data?.count}
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </Link>
           <Link href="/cart">

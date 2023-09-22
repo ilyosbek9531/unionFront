@@ -35,7 +35,6 @@ const RegistrationContent = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
     authRegisterPhone({
       first_name: data.firstName,
       last_name: data.lastName,

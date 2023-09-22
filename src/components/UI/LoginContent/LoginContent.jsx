@@ -47,7 +47,6 @@ const LoginContent = () => {
       }
     },
     onError: (err) => {
-      console.log(err);
       <ShowAlert severity={"error"}>{err.error}</ShowAlert>;
     },
   });
