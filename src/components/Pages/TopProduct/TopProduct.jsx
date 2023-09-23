@@ -43,6 +43,7 @@ const TopProduct = () => {
       flattenedArray={flattenedArray}
       skeletonCount={skeletonCount}
       visible={false}
+      userId={true}
     />
   );
 };

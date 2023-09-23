@@ -17,12 +17,15 @@ const breadcrumbItems = [
 ];
 
 const Cart = () => {
+  const userId =
+    typeof window !== "undefined" && localStorage.getItem("user_id");
   const [changeCount, setChangeCount] = useState("0");
+
   return (
     <Container>
       <div className={styles.cart}>
         <CBreadCrumbs items={breadcrumbItems} />
-        {typeof window !== "undefined" && localStorage.getItem("user_id") ? (
+        {userId ? (
           <>
             <div className={styles.cart__content}>
               <div className={styles.wrapper}>

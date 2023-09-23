@@ -13,13 +13,16 @@ import Modal from "components/UI/Modal/Modal";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import MaskInput from "components/UI/InputMask/MaskInput";
-import { usePostApplication } from "services/main.service";
+import { useGetTopProducts, usePostApplication } from "services/main.service";
 
 export function Main() {
   const [openModal, setOpenModal] = useState(false);
   const [openSendSuccessfully, setOpenSendSuccessfully] = useState(false);
   const handleOpenClose = () => setOpenModal(false);
   const handleCloseSend = () => setOpenSendSuccessfully(false);
+  const userId =
+    typeof window !== "undefined" && localStorage.getItem("user_id");
+
   const {
     register,
     handleSubmit,
@@ -31,6 +34,15 @@ export function Main() {
       phone_number: "",
       full_name: "",
       description: "",
+    },
+  });
+
+  const { data } = useGetTopProducts({
+    queryParams: {
+      limit: 10,
+      offset: 0,
+      order: "top_product",
+      user_id: userId,
     },
   });
 
@@ -55,7 +67,7 @@ export function Main() {
       <div className={styles.wrapper}>
         <main className={styles.main}>
           <Banner />
-          <TopProducts />
+          <TopProducts data={data} />
           <Category />
           <Universities />
         </main>

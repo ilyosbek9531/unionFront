@@ -46,7 +46,7 @@ const ProductCard = ({ id, img, name, rate, price, is_favourite }) => {
               onClick={(event) => onSubmit(event)}
               className={styles.card__img__like}
             >
-              {isFavourite ? (
+              {isFavourite && userId ? (
                 <IsFavouriteLikeIcon size={"24"} />
               ) : (
                 <LikeIcon width="24" height="24" fill="#00ADB5" />

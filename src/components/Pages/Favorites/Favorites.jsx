@@ -50,6 +50,7 @@ const Favorites = () => {
       contentButton="Go to All Products page"
       deleteButton={true}
       visible={false}
+      userId={userId}
     />
   );
 };
