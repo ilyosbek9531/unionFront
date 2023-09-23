@@ -1,11 +1,13 @@
 import React from "react";
 import styles from "./Category.module.scss";
-import { Container } from "@mui/material";
+import { Container, useMediaQuery } from "@mui/material";
 import { createCategoryArr } from "utils/createCategoryArr";
 import { useGetCategories } from "services/main.service";
 import { useRouter } from "next/router";
 
 const Category = () => {
+  const width1000px = useMediaQuery("(max-width:1000px)");
+  const checkWidth = width1000px ? 2 : 6;
   const { push } = useRouter();
   const { data } = useGetCategories({
     queryParams: {
@@ -18,7 +20,7 @@ const Category = () => {
       <div className={styles.category}>
         <h4>Category</h4>
         <div className={styles.category__product}>
-          {createCategoryArr(data?.datas ?? []).map((item) => (
+          {createCategoryArr(data?.datas ?? [], checkWidth).map((item) => (
             <div className={styles.category__list}>
               {item?.map((elem, index) => (
                 <div

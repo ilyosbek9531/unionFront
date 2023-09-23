@@ -8,3 +8,23 @@
     display: none;
   }
 }
+
+.drawerItem {
+  @include align-items-center;
+  gap: rem(10);
+}
+
+.langs {
+  @include align-items-center;
+  gap: rem(10);
+  margin: 10px 0;
+
+  .lang {
+    cursor: pointer;
+    @include align-items-center;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 10px;
+    gap: 5px;
+  }
+}

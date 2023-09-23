@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./Universities.module.scss";
-import { Container } from "@mui/material";
+import { Container, useMediaQuery } from "@mui/material";
 import Marquee from "react-fast-marquee";
 import { useGetUniversities } from "services/main.service";
 import { useRouter } from "next/router";
 
 const Universities = () => {
+  const width1000px = useMediaQuery("(min-width:1000px)");
   const { push } = useRouter();
   const { data } = useGetUniversities({
     queryParams: {
@@ -26,7 +27,7 @@ const Universities = () => {
           speed={40}
           direction="left"
           gradientWidth={100}
-          gradient={true}
+          gradient={width1000px}
           gradientColor={[255, 255, 255]}
         >
           {data?.datas?.map((el, index) => (
@@ -45,7 +46,7 @@ const Universities = () => {
           speed={40}
           direction="right"
           gradientWidth={100}
-          gradient={true}
+          gradient={width1000px}
           gradientColor={[255, 255, 255]}
         >
           {data?.datas?.map((el, index) => (

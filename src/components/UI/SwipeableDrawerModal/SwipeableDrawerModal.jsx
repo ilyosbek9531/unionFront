@@ -36,7 +36,7 @@ export default function SwipeableDrawerModal({
       <Global
         styles={{
           "& .MuiModal-root.MuiDrawer-root": {
-            zIndex: "99 !important",
+            zIndex: "9999 !important",
           },
           "&.MuiDrawer-root >  &.MuiPaper-root": {
             overflow: "visible",
@@ -51,7 +51,7 @@ export default function SwipeableDrawerModal({
         onClose={onClose}
         onOpen={onOpen}
         swipeAreaWidth={drawerBleeding}
-        disableSwipeToOpen={false}
+        disableSwipeToOpen={true}
         ModalProps={{
           keepMounted: true,
         }}

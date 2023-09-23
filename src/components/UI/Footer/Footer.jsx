@@ -23,30 +23,28 @@ export function Footer() {
             </a>
           </Link>
           <div className={styles.box__right}>
-            <nav>
-              <ul>
-                <li>
-                  <Link href="/">
-                    <a>All products</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog">
-                    <a>Top products</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about">
-                    <a>My orders</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about">
-                    <a>About us</a>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+            <ul>
+              <li>
+                <Link href="/products">
+                  <a>All products</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/topproducts">
+                  <a>Top products</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/about">
+                  <a>My orders</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/about">
+                  <a>About us</a>
+                </Link>
+              </li>
+            </ul>
             <div className={styles.box__right__right}>
               <h5>Biz bilan bog’laning</h5>
               <div className={styles.box__right__right__icons}>

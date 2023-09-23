@@ -2,28 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./Navbar.module.scss";
 import { ArrowIcon } from "components/Icons";
-
-const menuItems = [
-  {
-    label: "Asosiy",
-    link: "/",
-  },
-  {
-    label: "Mahsulotlar",
-    children: [
-      { label: "All products", link: "/products" },
-      { label: "Top products", link: "/topproducts" },
-    ],
-  },
-  {
-    label: "About us",
-    link: "/about-us",
-  },
-  {
-    label: "Arxiv",
-    link: "/archive",
-  },
-];
+import { menuItems } from "utils/menuItems";
 
 function Navbar() {
   const router = useRouter();

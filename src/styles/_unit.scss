@@ -97,3 +97,25 @@ $rem-base: 16px !default;
   display: flex;
   flex-direction: column;
 }
+
+@mixin title {
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 54px;
+
+  @media (width< 1000px) {
+    font-size: 25px;
+    line-height: 30px;
+  }
+}
+
+@mixin text {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+
+  @media (width< 1000px) {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}

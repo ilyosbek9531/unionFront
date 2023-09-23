@@ -1,7 +1,6 @@
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
-import { useMediaQuery } from "@mui/material";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });

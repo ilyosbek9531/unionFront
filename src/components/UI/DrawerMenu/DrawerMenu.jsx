@@ -10,9 +10,39 @@ import {
   ListItemText,
 } from "@mui/material";
 import SwipeableDrawerModal from "../SwipeableDrawerModal/SwipeableDrawerModal";
-import { HamburgerIcon } from "components/Icons";
+import {
+  BasketIcon,
+  HamburgerIcon,
+  LikeIcon,
+  LogoutIcon,
+  ProfileIcon,
+  UzbekLangIcon,
+} from "components/Icons";
+import { menuItemsMobil } from "utils/menuItems";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import MainButton from "../MainButton/MainButton";
+
+const langs = [
+  {
+    key: "ru",
+    label: "RUS",
+    icon: <ProfileIcon />,
+  },
+  {
+    key: "uz",
+    label: "UZB",
+    icon: <ProfileIcon />,
+  },
+  {
+    key: "en",
+    label: "ENG",
+    icon: <ProfileIcon />,
+  },
+];
 
 export default function DrawerMenu() {
+  const router = useRouter();
   const [openBar, setOpenBar] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
@@ -35,24 +65,56 @@ export default function DrawerMenu() {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+        {menuItemsMobil.map((item) => (
+          <Link href={item.link}>
+            <ListItem key={item} disablePadding>
+              <ListItemButton>
+                <ListItemText primary={item.label || ""} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
       <Divider />
+      <div className={styles.langs}>
+        {langs.map((elem) => (
+          <Link href={router.asPath} locale={elem.key} replace={true}>
+            <li key={elem?.label} className={styles.lang}>
+              {console.log("elem", elem)}
+              <a>{elem.label} </a>
+              {elem.icon}
+            </li>
+          </Link>
+        ))}
+      </div>
+      <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {[
+          { icon: <LikeIcon />, text: "Favourites", link: "/favorites" },
+          { icon: <BasketIcon />, text: "Basket", link: "/cart" },
+        ].map((item) => (
+          <ListItem key={item.link} disablePadding>
             <ListItemButton>
-              <ListItemText primary={text} />
+              <ListItemText
+                primary={
+                  <div className={styles.drawerItem}>
+                    {item.icon} {item.text}
+                  </div>
+                }
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
+      <MainButton
+        variant="outlined"
+        text={
+          typeof window !== "undefined" && localStorage.getItem("token")
+            ? "Log out"
+            : "Login"
+        }
+        fullWidth
+      />
     </Box>
   );
 
