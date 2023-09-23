@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./SingleProductInfo.module.scss";
 import CRating from "../Rating/Rating";
 
-const SingleProductInfo = ({ SingleProduct, SingleProductImg }) => {
+const SingleProductInfo = ({
+  setSizeData,
+  setColorData,
+  SingleProduct,
+  SingleProductImg,
+}) => {
   return (
     <form className={styles.wrapper}>
       <div className={styles.contexts}>
@@ -14,6 +19,7 @@ const SingleProductInfo = ({ SingleProduct, SingleProductImg }) => {
         <div className={styles.colors}>
           {SingleProductImg?.datas.map((item) => (
             <div
+              onClick={() => setColorData(item.id)}
               className={styles.color}
               style={{
                 backgroundColor: item.rgb,
@@ -30,10 +36,15 @@ const SingleProductInfo = ({ SingleProduct, SingleProductImg }) => {
         <h2 className={styles.title}>O'lchamlari</h2>
         <div className={styles.sizes}>
           {SingleProduct?.sizes.map((item) => (
-            <span className={styles.size}>{item.code}</span>
+            <span
+              className={styles.size}
+              onClick={() => setSizeData(item.code)}
+            >
+              {item.code}
+            </span>
           ))}
         </div>
-        <div className={styles.size_price}>
+        <div className={styles.prices}>
           <h2 className={styles.price}>{`${SingleProduct?.price}`}</h2>
         </div>
       </div>

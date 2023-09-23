@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./SingleProductContent.module.scss";
 import SingleProductImage from "../SingleProductImage/SingleProductImage";
 import SingleProductInfo from "../SingleProductInfo/SingleProductInfo";
@@ -41,6 +41,8 @@ const images = [
 
 const SingleProductContent = () => {
   const router = useRouter();
+  const [colorData, setColorData] = useState();
+  const [sizeData, setSizeData] = useState();
   const { data: SingleProduct } = useGetSingleProduct({
     params: router.query.id,
     queryParams: {
@@ -56,14 +58,22 @@ const SingleProductContent = () => {
     },
   });
 
-  console.log("SingleProductImg", SingleProductImg);
+  useEffect(() => {
+    setColorData(SingleProductImg?.datas[0].id);
+  }, [SingleProductImg]);
 
   return (
     <div className={styles.content}>
-      <SingleProductImage images={images} />
+      <SingleProductImage
+        colorData={colorData}
+        images={images}
+        singleProductImg={SingleProductImg}
+      />
       <SingleProductInfo
         SingleProduct={SingleProduct}
         SingleProductImg={SingleProductImg}
+        setColorData={setColorData}
+        setSizeData={setSizeData}
       />
     </div>
   );

@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
-const SingleProductImage = ({ images }) => {
+const SingleProductImage = ({ colorData, singleProductImg }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const galleryRef = useRef(null);
 
@@ -13,16 +13,28 @@ const SingleProductImage = ({ images }) => {
     galleryRef.current.slideToIndex(currentIndex);
   };
 
+  const imageData = singleProductImg?.datas.find(
+    (item) => item.id === colorData
+  );
+
+  const images = imageData?.image_urls.map((url) => ({
+    original: url,
+    thumbnail: url,
+  }));
+
+  console.log("images", images);
+
   return (
     <div className="custom-image-gallery">
       <ImageGallery
         ref={galleryRef}
-        items={images}
+        items={images ?? []}
         thumbnailPosition="left"
-        showNav={false}
+        // showNav={false}
         onSlide={handleSlide}
         // lazyLoad={true}
-        // useTranslate3D={false}
+        infinite={true}
+        // useTranslate3D={true}
         // isRTL={true}
         // showBullets={true}
         // showIndex={true}
@@ -32,15 +44,18 @@ const SingleProductImage = ({ images }) => {
         // disableSwipe={true}
         // disableThumbnailSwipe={false}
         // indexSeparator="*"
-        slideDuration={200}
+        // slideDuration={200}
         // swipingTransitionDuration={100}
         // slideInterval={100}
         // slideOnThumbnailOver={false}
         // flickThreshold={0}
         // swipeThreshold={0}
         // stopPropagation={true}
-        // onThumbnailClick={}
-        useWindowKeyDown={true}
+        // useWindowKeyDown={true}
+        // originalWidth={"100%"}
+        // originalHeight={"auto"}
+        // thumbnailHeight={"100px"}
+        // thumbnailWidth={"auto"}
       />
       <div className="custom-arrows">
         <button
@@ -53,7 +68,7 @@ const SingleProductImage = ({ images }) => {
         <button
           className="arrow-down"
           onClick={() => handleSlide(currentIndex + 1)}
-          disabled={currentIndex === images.length - 1}
+          disabled={currentIndex === images?.length - 1}
         >
           <ArrowRightIcon
             fill="#fff"
