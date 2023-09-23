@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./SingleProductContent.module.scss";
 import SingleProductImage from "../SingleProductImage/SingleProductImage";
 import SingleProductInfo from "../SingleProductInfo/SingleProductInfo";
-import {
-  useGetSingleProduct,
-  useGetSingleProductImage,
-} from "services/products.service";
-import { useRouter } from "next/router";
+import { useGetSingleProductImage } from "services/products.service";
 
 const images = [
   {
@@ -39,17 +35,9 @@ const images = [
   },
 ];
 
-const SingleProductContent = () => {
-  const router = useRouter();
+const SingleProductContent = ({ SingleProduct }) => {
   const [colorData, setColorData] = useState();
   const [sizeData, setSizeData] = useState();
-  const { data: SingleProduct } = useGetSingleProduct({
-    params: router.query.id,
-    queryParams: {
-      limit: 0,
-      offset: 0,
-    },
-  });
 
   const { data: SingleProductImg } = useGetSingleProductImage({
     queryParams: {

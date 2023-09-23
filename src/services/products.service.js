@@ -19,6 +19,8 @@ const productService = {
     requestUnion.get(`/product/${params}`, { params: queryParams }),
   getSingleProductImages: (queryParams) =>
     requestUnion.get("product_image", { params: queryParams }),
+  getCategoryProduct: (queryParams) =>
+    requestUnion.get("/product", { params: queryParams }),
 };
 
 export const useGetProductDataInfinite = ({
@@ -76,7 +78,16 @@ export const useGetSingleProduct = ({ params, queryParams }) => {
 };
 
 export const useGetSingleProductImage = ({ queryParams }) => {
-  return useQuery(["GET_SINGLE_PRODUCT_Image", queryParams], async () => {
+  return useQuery(["GET_SINGLE_PRODUCT_IMAGE", queryParams], async () => {
     return await productService.getSingleProductImages(queryParams);
   });
+};
+export const useGetCategoryProduct = ({ queryParams, querySettings }) => {
+  return useQuery(
+    ["GET_CATAGORY_PRODUCTS", queryParams],
+    async () => {
+      return await productService.getCategoryProduct(queryParams);
+    },
+    querySettings
+  );
 };

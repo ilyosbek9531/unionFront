@@ -36,6 +36,7 @@ const TFComponent = ({
   page,
   contentButton,
   deleteButton,
+  userId,
 }) => {
   return (
     <Container>
@@ -57,45 +58,58 @@ const TFComponent = ({
             )}
           </div>
         </div>
-        {flattenedArray?.length == 0 ? (
+        {!userId ? (
           <span className={styles.warning}>
             <RequirementLogin
-              warningText={warningText}
-              contentButton={contentButton}
-              page={page}
+              contentButton={"Go to the Login page"}
+              warningText={"Please login form website"}
+              page={"login"}
             />
           </span>
         ) : (
-          <main>
-            <InfiniteScroll
-              dataLength={data?.pages?.flat()?.length || 10}
-              next={fetchNextPage}
-              hasMore={hasNextPage}
-              loader={skeletonCount.map((count) => (
-                <Skeleton
-                  key={count}
-                  variant="rectangular"
-                  width={"100%"}
-                  height={"358.81px"}
+          <>
+            {flattenedArray?.length == 0 ? (
+              <span className={styles.warning}>
+                <RequirementLogin
+                  warningText={warningText}
+                  contentButton={contentButton}
+                  page={page}
                 />
-              ))}
-              className={styles.main}
-            >
-              {flattenedArray?.map((item) => (
-                <ProductCard
-                  key={item.id}
-                  id={item.product_id}
-                  img={item.image_url}
-                  name={item.title}
-                  rate={item.rating}
-                  price={item.price}
-                  descriptionr={item.description}
-                  size={item.size}
-                  is_favourite={item.is_favourite}
-                />
-              ))}
-            </InfiniteScroll>
-          </main>
+                {console.log(flattenedArray)}
+              </span>
+            ) : (
+              <main>
+                <InfiniteScroll
+                  dataLength={data?.pages?.flat()?.length || 10}
+                  next={fetchNextPage}
+                  hasMore={hasNextPage}
+                  loader={skeletonCount.map((count) => (
+                    <Skeleton
+                      key={count}
+                      variant="rectangular"
+                      width={"100%"}
+                      height={"358.81px"}
+                    />
+                  ))}
+                  className={styles.main}
+                >
+                  {flattenedArray?.map((item) => (
+                    <ProductCard
+                      key={item.id}
+                      id={item.product_id}
+                      img={item.image_url}
+                      name={item.title}
+                      rate={item.rating}
+                      price={item.price}
+                      descriptionr={item.description}
+                      size={item.size}
+                      is_favourite={item.is_favourite}
+                    />
+                  ))}
+                </InfiniteScroll>
+              </main>
+            )}
+          </>
         )}
       </div>
     </Container>

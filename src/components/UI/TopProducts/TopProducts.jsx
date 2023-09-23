@@ -6,18 +6,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import { useGetTopProducts } from "services/main.service";
 import Link from "next/link";
 
-const TopProducts = ({ visible = true }) => {
-  const userId =
-    typeof window !== "undefined" && localStorage.getItem("user_id");
-  const { data } = useGetTopProducts({
-    queryParams: {
-      limit: 10,
-      offset: 0,
-      order: "top_product",
-      user_id: userId,
-    },
-  });
-
+const TopProducts = ({ data, visible = true }) => {
   return (
     <div className={styles.top}>
       {visible ? (

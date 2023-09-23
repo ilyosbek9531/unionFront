@@ -3,10 +3,14 @@ import styles from "./SingleProduct.module.scss";
 import CBreadCrumbs from "components/UI/CBreadCrumbs/CBreadCrumbs";
 import { Container } from "@mui/material";
 import { ArrowRightIcon } from "components/Icons";
-import useSingleProduct from "./useSingleProduct";
 import SingleProductContent from "components/UI/SingleProductContent/SingleProductContent";
-import ProductsCards from "components/UI/ProductsCards/ProductsCards";
 import TopProducts from "components/UI/TopProducts/TopProducts";
+import {
+  useGetCategoryProduct,
+  useGetSingleProduct,
+} from "services/products.service";
+import { useRouter } from "next/router";
+import singleProduct from "pages/products/[id]";
 
 const breadcrumbItems = [
   {
@@ -23,6 +27,29 @@ const breadcrumbItems = [
 ];
 
 const SingleProduct = () => {
+  const router = useRouter();
+  const userId =
+    typeof window !== "undefined" && localStorage.getItem("user_id");
+  const { data: SingleProduct } = useGetSingleProduct({
+    params: router.query.id,
+    queryParams: {
+      limit: 0,
+      offset: 0,
+    },
+  });
+
+  const { data: CategoryProduct } = useGetCategoryProduct({
+    queryParams: {
+      limit: 0,
+      offset: 0,
+      user_id: userId,
+      category_id: SingleProduct?.category.id,
+    },
+    querySettings: {
+      enabled: !!SingleProduct,
+    },
+  });
+  console.log("CategoryProduct", CategoryProduct);
   return (
     <div className={styles.single}>
       <Container>
@@ -40,11 +67,11 @@ const SingleProduct = () => {
               </div>
             </div>
           </div>
-          <SingleProductContent />
+          <SingleProductContent SingleProduct={SingleProduct} />
 
           <div className={styles.offerProducts}>
             <h2 className={styles.title}>Tavsiya etilgan tovarlar</h2>
-            <TopProducts visible={false} />
+            <TopProducts visible={false} data={CategoryProduct} />
           </div>
         </div>
       </Container>

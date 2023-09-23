@@ -18,6 +18,20 @@ const ProductsCards = ({
         dataLength={data?.pages?.flat()?.length || 10}
         next={fetchNextPage}
         hasMore={hasNextPage}
+        endMessage={
+          <div
+            style={{
+              textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              padding: "10px 20px",
+            }}
+          >
+            <b>There are not products</b>
+          </div>
+        }
         loader={skeletonCount.map((count) => (
           <Skeleton
             key={count}
