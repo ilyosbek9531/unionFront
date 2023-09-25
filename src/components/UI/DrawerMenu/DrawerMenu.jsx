@@ -13,37 +13,39 @@ import SwipeableDrawerModal from "../SwipeableDrawerModal/SwipeableDrawerModal";
 import {
   BasketIcon,
   HamburgerIcon,
+  LangEnIcon,
+  LangRuIcon,
+  LangUzIcon,
   LikeIcon,
-  LogoutIcon,
-  ProfileIcon,
-  UzbekLangIcon,
 } from "components/Icons";
 import { menuItemsMobil } from "utils/menuItems";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import MainButton from "../MainButton/MainButton";
+import useTranslation from "next-translate/useTranslation";
 
 const langs = [
   {
     key: "ru",
     label: "RUS",
-    icon: <ProfileIcon />,
+    icon: <LangRuIcon />,
   },
   {
     key: "uz",
     label: "UZB",
-    icon: <ProfileIcon />,
+    icon: <LangUzIcon />,
   },
   {
     key: "en",
     label: "ENG",
-    icon: <ProfileIcon />,
+    icon: <LangEnIcon />,
   },
 ];
 
 export default function DrawerMenu() {
   const router = useRouter();
   const [openBar, setOpenBar] = useState(false);
+  const { lang } = useTranslation("common");
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -76,35 +78,42 @@ export default function DrawerMenu() {
         ))}
       </List>
       <Divider />
-      <div className={styles.langs}>
-        {langs.map((elem) => (
-          <Link href={router.asPath} locale={elem.key} replace={true}>
-            <li key={elem?.label} className={styles.lang}>
-              <a>{elem.label} </a>
-              {elem.icon}
-            </li>
-          </Link>
-        ))}
-      </div>
-      <Divider />
       <List>
         {[
           { icon: <LikeIcon />, text: "Favourites", link: "/favorites" },
           { icon: <BasketIcon />, text: "Basket", link: "/cart" },
         ].map((item) => (
-          <ListItem key={item.link} disablePadding>
-            <ListItemButton>
-              <ListItemText
-                primary={
-                  <div className={styles.drawerItem}>
-                    {item.icon} {item.text}
-                  </div>
-                }
-              />
-            </ListItemButton>
-          </ListItem>
+          <Link key={item.link} href={item.link}>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemText
+                  primary={
+                    <div className={styles.drawerItem}>
+                      {item.icon} {item.text}
+                    </div>
+                  }
+                />
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
+      <Divider />
+      <div className={styles.langs}>
+        {langs.map((elem) => (
+          <Link href={router.asPath} locale={elem.key} replace={true}>
+            <li
+              key={elem?.label}
+              className={styles.lang}
+              style={{
+                backgroundColor: lang === elem.key && "var(--border-color)",
+              }}
+            >
+              {elem.icon}
+            </li>
+          </Link>
+        ))}
+      </div>
       <MainButton
         variant="outlined"
         text={

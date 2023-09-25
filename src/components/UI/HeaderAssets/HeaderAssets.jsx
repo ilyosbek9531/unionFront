@@ -3,10 +3,12 @@ import styles from "./HeaderAssets.module.scss";
 import {
   BasketIcon,
   CloseButton,
+  LangEnIcon,
+  LangRuIcon,
+  LangUzIcon,
   LikeIcon,
   LogoutIcon,
   ProfileIcon,
-  UzbekLangIcon,
 } from "components/Icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -19,17 +21,17 @@ const langs = [
   {
     key: "ru",
     label: "RUS",
-    icon: <UzbekLangIcon />,
+    icon: <LangRuIcon />,
   },
   {
     key: "uz",
     label: "UZB",
-    icon: <UzbekLangIcon />,
+    icon: <LangUzIcon />,
   },
   {
     key: "en",
     label: "ENG",
-    icon: <UzbekLangIcon />,
+    icon: <LangEnIcon />,
   },
 ];
 
