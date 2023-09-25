@@ -29,7 +29,7 @@ const TopProducts = ({ data, visible = true }) => {
         className="custom-swiper-card"
         breakpoints={{
           300: {
-            slidesPerView: 1,
+            slidesPerView: 1.3,
             spaceBetween: 20,
           },
           500: {

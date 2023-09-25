@@ -6,10 +6,18 @@
     align-items: center;
     border-bottom: 1px solid #dbdbdb;
     padding-bottom: rem(15);
+    cursor: pointer;
+
     h5 {
       font-weight: 600;
       font-size: 20px;
       line-height: 30px;
+    }
+  }
+
+  &__body {
+    @media (width <= 1000px) {
+      display: none;
     }
   }
 }

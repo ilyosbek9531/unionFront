@@ -75,7 +75,6 @@ const TFComponent = ({
                   contentButton={contentButton}
                   page={page}
                 />
-                {console.log(flattenedArray)}
               </span>
             ) : (
               <main>

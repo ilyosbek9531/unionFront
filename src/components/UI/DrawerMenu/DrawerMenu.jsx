@@ -80,7 +80,6 @@ export default function DrawerMenu() {
         {langs.map((elem) => (
           <Link href={router.asPath} locale={elem.key} replace={true}>
             <li key={elem?.label} className={styles.lang}>
-              {console.log("elem", elem)}
               <a>{elem.label} </a>
               {elem.icon}
             </li>

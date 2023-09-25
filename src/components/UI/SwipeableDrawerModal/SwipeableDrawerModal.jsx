@@ -41,6 +41,7 @@ export default function SwipeableDrawerModal({
           "&.MuiDrawer-root >  &.MuiPaper-root": {
             overflow: "visible",
             borderRadius: "12px",
+            maxHeight: "80vh",
           },
         }}
       />

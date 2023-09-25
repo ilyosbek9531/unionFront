@@ -38,15 +38,6 @@ const useProductsContent = () => {
 
   const flattenedArray = data?.pages?.flatMap((obj) => obj.datas ?? []);
 
-  // console.log("price", watch("price"));
-  // console.log("price-from", watch("price-from"));
-  // console.log("price-to", watch("price-to"));
-  // console.log("category-search", watch("category-search"));
-  // console.log("university-search", watch("university-search"));
-  // console.log("category", category);
-  // console.log("university", university);
-  // console.log("search", watch("search"));
-
   useEffect(() => {
     setValue("price-from", watch("price")?.[0]);
     setValue("price-to", watch("price")?.[1]);

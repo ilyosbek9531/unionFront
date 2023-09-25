@@ -22,8 +22,6 @@ const SingleProductImage = ({ colorData, singleProductImg }) => {
     thumbnail: url,
   }));
 
-  console.log("images", images);
-
   return (
     <>
       <ImageGallery

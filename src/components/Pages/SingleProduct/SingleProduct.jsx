@@ -49,7 +49,6 @@ const SingleProduct = () => {
       enabled: !!SingleProduct,
     },
   });
-  console.log("CategoryProduct", CategoryProduct);
   return (
     <div className={styles.single}>
       <Container>

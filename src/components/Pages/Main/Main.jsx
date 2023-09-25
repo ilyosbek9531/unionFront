@@ -8,34 +8,21 @@ import {
   SubmitAppIcon,
   SucccessfullyIcon,
 } from "components/Icons";
-import { Container } from "@mui/material";
+import { Container, useMediaQuery } from "@mui/material";
 import Modal from "components/UI/Modal/Modal";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import MaskInput from "components/UI/InputMask/MaskInput";
-import { useGetTopProducts, usePostApplication } from "services/main.service";
+import { useGetTopProducts } from "services/main.service";
+import Application from "components/UI/Application/Application";
+import SwipeableDrawerModal from "components/UI/SwipeableDrawerModal/SwipeableDrawerModal";
 
 export function Main() {
+  const width1000px = useMediaQuery("(max-width:1000px)");
   const [openModal, setOpenModal] = useState(false);
   const [openSendSuccessfully, setOpenSendSuccessfully] = useState(false);
   const handleOpenClose = () => setOpenModal(false);
   const handleCloseSend = () => setOpenSendSuccessfully(false);
   const userId =
     typeof window !== "undefined" && localStorage.getItem("user_id");
-
-  const {
-    register,
-    handleSubmit,
-    control,
-    reset,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      phone_number: "",
-      full_name: "",
-      description: "",
-    },
-  });
 
   const { data } = useGetTopProducts({
     queryParams: {
@@ -46,22 +33,6 @@ export function Main() {
     },
   });
 
-  const { mutate: postApplicationMutate } = usePostApplication({
-    onSuccess: (res) => {
-      setOpenSendSuccessfully(true);
-      setOpenModal(false);
-      reset();
-    },
-    onError: (err) => {},
-  });
-
-  const onSubmit = (data) => {
-    postApplicationMutate({
-      phone_number: data.phone_number.replaceAll(" ", "").replaceAll("-", ""),
-      full_name: data.full_name,
-      description: data.description,
-    });
-  };
   return (
     <>
       <div className={styles.wrapper}>
@@ -80,66 +51,28 @@ export function Main() {
         </div>
       </div>
 
-      <Modal open={openModal} handleClose={handleOpenClose}>
-        <div className={styles.modal_wrapper}>
-          <div className={styles.title_wrapper}>
-            <h1 className={styles.title}>Ariza to’ldiring</h1>
-            <span onClick={handleOpenClose} className={styles.closeButton}>
-              <CloseButton />
-            </span>
-          </div>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className={styles.form_wrapper}
-          >
-            <label for="full_name">FIO</label>
-            <input
-              type="text"
-              {...register("full_name", {
-                required: "To'liq ismingizni kiriting",
-              })}
-              placeholder="To'liq ismingizni kiriting"
-              className={styles.input}
-              style={{
-                border: errors.full_name ? "2px solid red" : "",
-              }}
-            />
-            <span className={styles.error}>{errors.full_name?.message}</span>
-            <label htmlFor="phoneNumber">Telefon</label>
-            <MaskInput
-              mask="+\9\9\8 99 999-99-99"
-              maskChar=""
-              placeholder="Введите номер телефона"
-              name="phone_number"
-              control={control}
-              errors={errors}
-              autoFocus
-              validation={{
-                required: {
-                  value: true,
-                  message: "Raqamni to'liq kiriting",
-                },
-              }}
-              className={styles.numberInput}
-            />
-            <label htmlFor="text">Message</label>
-            <textarea
-              type="text"
-              {...register("description", {
-                required: "Write description here",
-              })}
-              placeholder="Fijringizni yozib qoldiring"
-              className={styles.textarea}
-              style={{
-                border: errors.description ? "2px solid red" : "",
-              }}
-            />
-            <span className={styles.error}>{errors.description?.message}</span>
+      {width1000px ? (
+        <SwipeableDrawerModal
+          open={openModal}
+          onClose={() => setOpenModal(false)}
+          onOpen={() => setOpenModal(true)}
+        >
+          <Application
+            handleOpenClose={handleOpenClose}
+            setOpenSendSuccessfully={setOpenSendSuccessfully}
+            setOpenModal={setOpenModal}
+          />
+        </SwipeableDrawerModal>
+      ) : (
+        <Modal open={openModal} handleClose={handleOpenClose}>
+          <Application
+            handleOpenClose={handleOpenClose}
+            setOpenSendSuccessfully={setOpenSendSuccessfully}
+            setOpenModal={setOpenModal}
+          />
+        </Modal>
+      )}
 
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-      </Modal>
       <Modal open={openSendSuccessfully} handleClose={handleCloseSend}>
         <div className={styles.success_wrapper}>
           <span onClick={handleCloseSend} className={styles.closeButton}>
