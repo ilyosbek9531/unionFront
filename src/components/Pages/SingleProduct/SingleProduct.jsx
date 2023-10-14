@@ -30,6 +30,7 @@ const SingleProduct = () => {
   const router = useRouter();
   const userId =
     typeof window !== "undefined" && localStorage.getItem("user_id");
+
   const { data: SingleProduct } = useGetSingleProduct({
     params: router.query.id,
     queryParams: {
@@ -37,6 +38,7 @@ const SingleProduct = () => {
       offset: 0,
     },
   });
+
 
   const { data: CategoryProduct } = useGetCategoryProduct({
     queryParams: {
@@ -66,7 +68,7 @@ const SingleProduct = () => {
               </div>
             </div>
           </div>
-          <SingleProductContent SingleProduct={SingleProduct} />
+          <SingleProductContent SingleProduct={SingleProduct} userId={userId} />
 
           <div className={styles.offerProducts}>
             <h2 className={styles.title}>Tavsiya etilgan tovarlar</h2>

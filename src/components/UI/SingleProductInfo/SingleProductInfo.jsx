@@ -5,8 +5,12 @@ import CRating from "../Rating/Rating";
 const SingleProductInfo = ({
   setSizeData,
   setColorData,
+  sizeData,
+  colorData,
   SingleProduct,
   SingleProductImg,
+  onSubmit,
+  errorMessage
 }) => {
   return (
     <form className={styles.wrapper}>
@@ -17,10 +21,10 @@ const SingleProductInfo = ({
       <div className={styles.selection}>
         <h2 className={styles.title}>Ranglar</h2>
         <div className={styles.colors}>
-          {SingleProductImg?.datas.map((item) => (
+          {SingleProductImg?.datas?.map((item) => (
             <div
               onClick={() => setColorData(item.id)}
-              className={styles.color}
+              className={`${styles.color} ${colorData === item.id ? styles.activeColor : ""}`}
               style={{
                 backgroundColor: item.rgb,
               }}
@@ -34,23 +38,24 @@ const SingleProductInfo = ({
       </div>
       <div className={`${styles.selection} ${styles.border}`}>
         <h2 className={styles.title}>O'lchamlari</h2>
+        {!sizeData ? <p style={{color:"red"}}>{errorMessage}</p>: ""}
         <div className={styles.sizes}>
           {SingleProduct?.sizes.map((item) => (
             <span
-              className={styles.size}
-              onClick={() => setSizeData(item.code)}
+              className={`${styles.size} ${sizeData === item.id ? styles.activeSize : ""}`}
+              onClick={() => setSizeData(item.id)}
             >
               {item.code}
             </span>
           ))}
         </div>
         <div className={styles.prices}>
-          <h2 className={styles.price}>{`${SingleProduct?.price}`}</h2>
+          <h2 className={styles.price}>{`${SingleProduct?.price} sum`}</h2>
         </div>
       </div>
       <div className={styles.buttons}>
         <div className={`${styles.buy} ${styles.btn}`}>Xarid qilish</div>
-        <div className={`${styles.toCart} ${styles.btn}`}>Savatchaga </div>
+        <div className={`${styles.toCart} ${styles.btn}`} onClick={onSubmit}>Savatchaga </div>
       </div>
     </form>
   );

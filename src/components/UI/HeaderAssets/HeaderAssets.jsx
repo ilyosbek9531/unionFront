@@ -16,6 +16,7 @@ import { token, user_first_name } from "services/http-client";
 import Modal from "../Modal/Modal";
 import DrawerMenu from "../DrawerMenu/DrawerMenu";
 import { useGetFavouriteCount } from "services/favourites.service";
+import { useGetCartProducts } from "services/cart.service";
 
 const langs = [
   {
@@ -48,6 +49,14 @@ const HeaderAssets = () => {
     queryParams: {
       limit: 1,
       offset: 0,
+    },
+  });
+
+  const { data: CartProducts } = useGetCartProducts({
+    queryParams: {
+      limit: 10,
+      offset: 0,
+      user_id: userId,
     },
   });
   const handleLogOut = () => {
@@ -95,7 +104,13 @@ const HeaderAssets = () => {
           <Link href="/cart">
             <div className={styles.assets__items__item}>
               <BasketIcon />
-              <div className={styles.assets__items__item__count}>76</div>
+              {CartProducts?.count ? (
+                <div className={styles.assets__items__item__count}>
+                  {CartProducts?.count}
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </Link>
           {token ? (

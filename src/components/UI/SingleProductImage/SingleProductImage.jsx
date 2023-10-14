@@ -13,7 +13,7 @@ const SingleProductImage = ({ colorData, singleProductImg }) => {
     galleryRef.current.slideToIndex(currentIndex);
   };
 
-  const imageData = singleProductImg?.datas.find(
+  const imageData = singleProductImg?.datas?.find(
     (item) => item.id === colorData
   );
 

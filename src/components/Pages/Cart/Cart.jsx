@@ -5,6 +5,7 @@ import CBreadCrumbs from "components/UI/CBreadCrumbs/CBreadCrumbs";
 import CartContent from "components/UI/CartContent/CartContent";
 import RequirementLogin from "components/UI/RequirementLogin/RequirementLogin";
 import TopProducts from "components/UI/TopProducts/TopProducts";
+import { useGetCartProducts } from "services/cart.service";
 
 const breadcrumbItems = [
   {
@@ -19,7 +20,15 @@ const breadcrumbItems = [
 const Cart = () => {
   const userId =
     typeof window !== "undefined" && localStorage.getItem("user_id");
-  const [changeCount, setChangeCount] = useState("0");
+  
+  const { data:CartProducts } = useGetCartProducts({
+    queryParams: {
+      limit: 10,
+      offset: 0,
+      user_id:userId
+    },
+  });
+  console.log("cart", CartProducts);
 
   return (
     <Container>
@@ -31,19 +40,16 @@ const Cart = () => {
               <div className={styles.wrapper}>
                 <h3 className={styles.title}>Korzinka</h3>
                 <p className={styles.count}>
-                  Mahsulotlar soni: <span>3</span>
+                  Mahsulotlar soni: <span>{CartProducts?.count}</span>
                 </p>
               </div>
               <span className={styles.deleteAll}>Barchasini o'chirish</span>
             </div>
             <CartContent
-              setChangeCount={setChangeCount}
-              changeCount={changeCount}
+              carts={CartProducts?.datas}
+              userId={userId}
+              count={CartProducts?.count}
             />
-            <div className={styles.offerProducts}>
-              <h2 className={styles.title}>Tavsiya etilgan tovarlar</h2>
-              <TopProducts visible={false} />
-            </div>
           </>
         ) : (
           <span className={styles.login}>

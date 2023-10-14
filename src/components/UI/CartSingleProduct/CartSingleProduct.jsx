@@ -4,10 +4,42 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   DeleteIcon,
+  IsFavouriteLikeIcon,
   LikeIcon,
 } from "components/Icons";
+import { usePostFavourite } from "services/products.service";
+import { useDeleteCartProduct } from "services/cart.service";
+import { queryClient } from "services/http-client";
 
-const CartSingleProduct = ({ title, count, price, image_url }) => {
+const CartSingleProduct = ({ id, userId, title, count, price, image_url, description, is_favourite, product_id }) => {
+
+  const { mutate: postFavouriteMutation } = usePostFavourite({
+    onSuccess: (res) => {
+      queryClient.refetchQueries(["GET_FAVOURITE_COUNT"]);
+    },
+    onError: (err) => {},
+  });
+  const onSubmit = () => {
+      postFavouriteMutation({
+        is_favourite: !is_favourite,
+        user_id: userId,
+        product_id: product_id,
+      });
+  };
+
+  const {mutate: deleteProductMutation}= useDeleteCartProduct({
+    onSuccess:(res)=>{
+      queryClient.refetchQueries(["GET_CART_PRODUCTS"]);
+    },
+    onError:(err)=>{}
+  })
+
+  const onDelete=()=>{
+    deleteProductMutation({
+      id,
+      user_id: userId
+    })
+  }
   return (
     <div className={styles.cart_wrapper}>
       <div className={styles.image_wrapper}>
@@ -18,19 +50,19 @@ const CartSingleProduct = ({ title, count, price, image_url }) => {
           <div className={styles.title_subtitle}>
             <h3 className={styles.title}>{title}</h3>
             <h3 className={styles.subtitle}>
-              Sleeveless top with an asymmetric high neck.
+              {description}
             </h3>
           </div>
-          <h1 className={styles.price}>{`${price}`}</h1>
+          <h1 className={styles.price}>{`${price} sum`}</h1>
         </div>
 
         <div className={styles.buttons_wrapper}>
           <div className={styles.remove_like_content}>
-            <div className={styles.like}>
-              <LikeIcon fill="#8C8C8C" />
+            <div className={styles.like} onClick={onSubmit}>
+              {is_favourite ? <IsFavouriteLikeIcon size={"30"}/> :  <LikeIcon fill="#8C8C8C" />}
               Saqlash
             </div>
-            <div className={styles.like}>
+            <div className={styles.like} onClick={onDelete}>
               <DeleteIcon />
               O'chirish
             </div>
