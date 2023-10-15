@@ -1,18 +1,9 @@
-import { ArrowRightIcon } from "components/Icons";
-import styles from "./SingleProductImage.module.scss";
-import React, { useState, useRef } from "react";
-import ImageGallery from "react-image-gallery";
+import React from "react";
+import Gallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import styles from "./SingleProductImage.module.scss";
 
 const SingleProductImage = ({ colorData, singleProductImg }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const galleryRef = useRef(null);
-
-  const handleSlide = (currentIndex) => {
-    setCurrentIndex(currentIndex);
-    galleryRef.current.slideToIndex(currentIndex);
-  };
-
   const imageData = singleProductImg?.datas?.find(
     (item) => item.id === colorData
   );
@@ -23,16 +14,18 @@ const SingleProductImage = ({ colorData, singleProductImg }) => {
   }));
 
   return (
-    <>
-      <ImageGallery
+    <div className={styles.imageGallery}>
+      <Gallery
         items={images ?? []}
-        thumbnailPosition="left"
-        // ref={galleryRef}
-        // additionalClass={styles.gallery}
-        showFullscreenButton={false}
+        showThumbnails
+        thumbnailPosition="bottom"
+        infinite={true}
+        showNav={false}
+        slideInterval={3000}
+        autoPlay
         showPlayButton={false}
       />
-    </>
+    </div>
   );
 };
 
