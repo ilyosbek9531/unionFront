@@ -22,7 +22,6 @@ const SingleProductImage = ({ colorData, singleProductImg }) => {
         infinite={true}
         showNav={false}
         slideInterval={3000}
-        autoPlay
         showPlayButton={false}
       />
     </div>
