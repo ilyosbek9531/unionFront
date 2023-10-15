@@ -60,9 +60,6 @@ const ProductCard = ({ id, img, name, rate, price, is_favourite }) => {
                 <CRating name="read-only" value={rate} />
                 <h5>{price}</h5>
               </div>
-              <div className={styles.card__info__items__basket}>
-                <BasketIcon width="16" height="16" fill="#00ADB5" />
-              </div>
             </div>
           </div>
         </div>

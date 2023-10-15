@@ -3,7 +3,6 @@ import styles from "./TopProducts.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import ProductCard from "../ProductCard/ProductCard";
-import { useGetTopProducts } from "services/main.service";
 import Link from "next/link";
 
 const TopProducts = ({ data, visible = true }) => {

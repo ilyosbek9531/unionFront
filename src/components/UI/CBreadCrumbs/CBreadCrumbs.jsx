@@ -1,5 +1,5 @@
 import React from "react";
-import { Breadcrumbs, Typography } from "@mui/material";
+import { Breadcrumbs } from "@mui/material";
 
 import styles from "./CBreadCrumbs.module.scss";
 import { useRouter } from "next/router";

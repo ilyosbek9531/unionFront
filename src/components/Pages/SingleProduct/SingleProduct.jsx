@@ -36,9 +36,9 @@ const SingleProduct = () => {
     queryParams: {
       limit: 0,
       offset: 0,
+      user_id: userId,
     },
   });
-
 
   const { data: CategoryProduct } = useGetCategoryProduct({
     queryParams: {
@@ -53,8 +53,8 @@ const SingleProduct = () => {
   });
   return (
     <div className={styles.single}>
-      <Container>
-        <div className={styles.single__content}>
+      <div className={styles.single__content}>
+        <Container>
           <div className={styles.single__top}>
             <CBreadCrumbs items={breadcrumbItems} />
             <div className={styles.single__top__arrows}>
@@ -69,13 +69,15 @@ const SingleProduct = () => {
             </div>
           </div>
           <SingleProductContent SingleProduct={SingleProduct} userId={userId} />
+        </Container>
 
-          <div className={styles.offerProducts}>
+        <div className={styles.offerProducts}>
+          <Container>
             <h2 className={styles.title}>Tavsiya etilgan tovarlar</h2>
-            <TopProducts visible={false} data={CategoryProduct} />
-          </div>
+          </Container>
+          <TopProducts visible={false} data={CategoryProduct} />
         </div>
-      </Container>
+      </div>
     </div>
   );
 };

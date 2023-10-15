@@ -88,9 +88,10 @@
 
         span {
           @include align-items-center;
-          border-radius: 39px;
+          border-radius: 50px;
           border: 1px solid #00adb5;
           cursor: pointer;
+          padding: 10px;
         }
         p {
           color: #000;

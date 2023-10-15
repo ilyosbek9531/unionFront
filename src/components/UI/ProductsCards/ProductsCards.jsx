@@ -12,6 +12,7 @@ const ProductsCards = ({
   data,
   flattenedArray,
 }) => {
+  console.log("flattenedArray", flattenedArray);
   return (
     <main>
       <InfiniteScroll

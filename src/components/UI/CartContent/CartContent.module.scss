@@ -1,20 +1,19 @@
 @import "styles/unit.scss";
-.wrapper{
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    width: 100%;
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
 
-    .products_wrapper{
-        width: 70%;
-    }
-        .price_wrapper{
-            width: 30%;
-        }
-    
+  .products_wrapper {
+    width: 70%;
+  }
+  .price_wrapper {
+    width: 30%;
+  }
 }
 
-.login{
-    @include element-center;
-    width: 100%
-  }
+.login {
+  @include element-center;
+  width: 100%;
+}

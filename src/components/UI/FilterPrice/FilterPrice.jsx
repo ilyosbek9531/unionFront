@@ -12,7 +12,7 @@ const FilterPrice = ({ control, setValue }) => {
           <RangeSlider
             control={control}
             name="price"
-            step={20}
+            step={1000}
             maxRange={100000}
             defaultValue={[0, 100000]}
           />

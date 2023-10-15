@@ -54,11 +54,12 @@ const HeaderAssets = () => {
 
   const { data: CartProducts } = useGetCartProducts({
     queryParams: {
-      limit: 10,
+      limit: 1,
       offset: 0,
       user_id: userId,
     },
   });
+
   const handleLogOut = () => {
     localStorage.clear();
     setOpenModal(false);

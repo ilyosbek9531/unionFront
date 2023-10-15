@@ -28,6 +28,10 @@ const Cart = () => {
     },
   });
 
+  const totalCount = CartProducts?.datas?.reduce((acc, val) => {
+    return acc + val.count;
+  }, 0);
+
   return (
     <Container>
       <div className={styles.cart}>
@@ -38,7 +42,7 @@ const Cart = () => {
               <div className={styles.wrapper}>
                 <h3 className={styles.title}>Korzinka</h3>
                 <p className={styles.count}>
-                  Mahsulotlar soni: <span>{CartProducts?.count}</span>
+                  Mahsulotlar soni: <span>{totalCount}</span>
                 </p>
               </div>
               <span className={styles.deleteAll}>Barchasini o'chirish</span>

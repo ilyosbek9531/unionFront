@@ -12,13 +12,13 @@
     color: #4d5e80;
     font-feature-settings: "clig" off, "liga" off;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 500;
+    margin-bottom: 10px;
   }
 
   .overall_content {
     display: flex;
     flex-direction: column;
-    gap: 15px;
 
     .products_price {
       @include justify-content-between;

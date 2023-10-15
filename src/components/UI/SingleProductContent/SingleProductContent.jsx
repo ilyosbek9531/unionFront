@@ -5,51 +5,20 @@ import SingleProductInfo from "../SingleProductInfo/SingleProductInfo";
 import { useGetSingleProductImage } from "services/products.service";
 import { usePostCartProduct } from "services/cart.service";
 import { useRouter } from "next/router";
-
-// const images = [
-//   {
-//     original: "/images/product1.png",
-//     thumbnail: "/images/product1.png",
-//   },
-//   {
-//     original: "/images/product1.png",
-//     thumbnail: "/images/product1.png",
-//   },
-//   {
-//     original: "/images/product1.png",
-//     thumbnail: "/images/product1.png",
-//   },
-//   {
-//     original: "/images/product1.png",
-//     thumbnail: "/images/product1.png",
-//   },
-//   {
-//     original: "/images/product1.png",
-//     thumbnail: "/images/product1.png",
-//   },
-//   {
-//     original: "/images/product1.png",
-//     thumbnail: "/images/product1.png",
-//   },
-//   {
-//     original: "/images/product1.png",
-//     thumbnail: "/images/product1.png",
-//   },
-// ];
+import { queryClient } from "services/http-client";
 
 const SingleProductContent = ({ SingleProduct, userId }) => {
-  const router= useRouter()
+  const router = useRouter();
   const [colorData, setColorData] = useState();
   const [sizeData, setSizeData] = useState();
-  const [errorMessage, setErrorMessage] = useState("")
 
+  const error = colorData && sizeData;
   const { data: SingleProductImg } = useGetSingleProductImage({
     queryParams: {
       limit: 0,
       offset: 0,
     },
   });
-  
 
   useEffect(() => {
     setColorData(SingleProductImg?.datas?.[0].id);
@@ -58,18 +27,19 @@ const SingleProductContent = ({ SingleProduct, userId }) => {
   const { mutate: postCartMutation } = usePostCartProduct({
     onSuccess: (res) => {
       queryClient.refetchQueries(["GET_CART_PRODUCTS"]);
+      router.push("/cart");
     },
     onError: (err) => {},
   });
+
   const onSubmit = () => {
-    sizeData && colorData ?  
     postCartMutation({
       count: 1,
       product_id: router.query.id,
       rgb: colorData,
       size_id: sizeData,
       user_id: userId,
-      }): setErrorMessage("Please choose size of product")
+    });
   };
 
   return (
@@ -86,7 +56,7 @@ const SingleProductContent = ({ SingleProduct, userId }) => {
         sizeData={sizeData}
         colorData={colorData}
         onSubmit={onSubmit}
-        errorMessage={errorMessage}
+        error={error}
       />
     </div>
   );
