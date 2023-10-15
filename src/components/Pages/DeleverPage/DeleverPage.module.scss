@@ -1,0 +1,8 @@
+@import "styles/unit.scss";
+@import "styles/unit.scss";
+
+.deliver_wrapper {
+  @include direction-column;
+  gap: rem(30);
+  padding: 50px 0;
+}

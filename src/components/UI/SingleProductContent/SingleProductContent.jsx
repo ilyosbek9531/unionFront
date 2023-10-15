@@ -33,13 +33,14 @@ const SingleProductContent = ({ SingleProduct, userId }) => {
   });
 
   const onSubmit = () => {
+    userId ?
     postCartMutation({
       count: 1,
       product_id: router.query.id,
       rgb: colorData,
       size_id: sizeData,
       user_id: userId,
-    });
+    }) : router.push("/login")
   };
 
   return (
