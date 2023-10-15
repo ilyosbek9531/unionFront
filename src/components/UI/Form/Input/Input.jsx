@@ -23,7 +23,7 @@ const Input = ({
               value={
                 typeof value == "object"
                   ? value?.value.replace(/\s{2,}/g, " ").trimStart()
-                  : value?.replace(/\s{2,}/g, " ").trimStart()
+                  : typeof value === "string" ? value.replace(/\s{2,}/g, " ").trimStart() : value
               }
               onChange={onChange}
               {...restProps}

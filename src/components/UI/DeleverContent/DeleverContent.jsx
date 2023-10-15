@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./DeleverContent.module.scss"
 import DeleverForm from "../DeleverForm/DeleverForm";
 import CartAllPrice from "../CartAllPrice/CartAllPrice";
 

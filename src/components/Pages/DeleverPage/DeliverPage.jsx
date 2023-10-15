@@ -2,7 +2,7 @@ import React from 'react'
 import styles from "./DeleverPage.module.scss";
 import { Container } from "@mui/material";
 import CBreadCrumbs from "components/UI/CBreadCrumbs/CBreadCrumbs";
-import DeleverPageCOntent from 'components/UI/DeleverPageContent/DeleverPageCOntent';
+import DeleverContent from 'components/UI/DeleverContent/DeleverContent';
 
 const breadcrumbItems = [
   {
@@ -24,6 +24,7 @@ const DeliverPage = () => {
     <Container>
     <div className={styles.deliver_wrapper}>
       <CBreadCrumbs items={breadcrumbItems} />
+      <DeleverContent/>
     </div>
   </Container>
   )
