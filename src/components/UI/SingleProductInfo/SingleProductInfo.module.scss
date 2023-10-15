@@ -15,7 +15,6 @@
 
   .title {
     color: #000;
-    font-family: Poppins;
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
@@ -25,7 +24,6 @@
 
   .context {
     color: #000;
-    font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     line-height: 23px;
@@ -37,17 +35,17 @@
   flex-direction: column;
   gap: 16px;
 
-  .colors{
+  .colors {
     display: flex;
     gap: rem(12);
-    .color{
+    .color {
       width: 30px;
       height: 30px;
       border-radius: 50%;
       border: 2px solid transparent;
       cursor: pointer;
     }
-    .activeColor{
+    .activeColor {
       border: 2px solid #000;
     }
   }
@@ -67,11 +65,11 @@
     }
   }
 
-  .sizes{
+  .sizes {
     display: flex;
     gap: rem(12);
 
-    .size{
+    .size {
       @include element-center;
       border: 2px solid transparent;
       border-radius: 10px;
@@ -84,7 +82,7 @@
       padding: 15px 8px;
     }
 
-    .activeSize{
+    .activeSize {
       border: 2px solid #515151;
       color: #000;
     }
@@ -115,7 +113,6 @@
   .buy {
     background: #00adb5;
     color: #fff;
-    font-family: Poppins;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -123,7 +120,6 @@
   }
   .toCart {
     color: #00adb5;
-    font-family: Poppins;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

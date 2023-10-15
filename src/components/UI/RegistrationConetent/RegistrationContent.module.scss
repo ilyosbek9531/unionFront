@@ -8,7 +8,6 @@
 
   .title {
     color: #000;
-    font-family: Poppins;
     font-size: 50px;
     font-style: normal;
     font-weight: 500;
@@ -24,7 +23,6 @@
 
   label {
     color: #000;
-    font-family: Poppins;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -46,7 +44,6 @@
 
     &::placeholder {
       color: #8c8c8c;
-      font-family: Poppins;
       font-size: 20px;
       font-style: normal;
       font-weight: 400;
@@ -59,13 +56,12 @@
     }
   }
 
-  .errorMessage{
-    color: #DE1616;
-      font-family: Poppins;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
+  .errorMessage {
+    color: #de1616;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 
   button {
@@ -82,7 +78,6 @@
     background: #00adb5;
     border: none;
     color: #fff;
-    font-family: Poppins;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;

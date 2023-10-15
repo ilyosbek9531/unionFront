@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Cart.module.scss";
 import { Container } from "@mui/material";
 import CBreadCrumbs from "components/UI/CBreadCrumbs/CBreadCrumbs";
 import CartContent from "components/UI/CartContent/CartContent";
 import RequirementLogin from "components/UI/RequirementLogin/RequirementLogin";
-import TopProducts from "components/UI/TopProducts/TopProducts";
 import { useGetCartProducts } from "services/cart.service";
 
 const breadcrumbItems = [
@@ -20,15 +19,14 @@ const breadcrumbItems = [
 const Cart = () => {
   const userId =
     typeof window !== "undefined" && localStorage.getItem("user_id");
-  
-  const { data:CartProducts } = useGetCartProducts({
+
+  const { data: CartProducts } = useGetCartProducts({
     queryParams: {
       limit: 10,
       offset: 0,
-      user_id:userId
+      user_id: userId,
     },
   });
-  console.log("cart", CartProducts);
 
   return (
     <Container>

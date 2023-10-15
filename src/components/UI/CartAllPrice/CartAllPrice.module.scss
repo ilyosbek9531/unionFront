@@ -1,52 +1,50 @@
 @import "styles/unit.scss";
 .overall_wrapper {
+  display: flex;
+  padding: 40px 30px;
+  flex-direction: column;
+  gap: 44px;
+  border-radius: 10px;
+  border: 1px solid #dbdbdb;
+  background: #fff;
+
+  .title {
+    color: #4d5e80;
+    font-feature-settings: "clig" off, "liga" off;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .overall_content {
     display: flex;
-    padding: 40px 30px;
     flex-direction: column;
-    gap: 44px;
-    border-radius: 10px;
-    border: 1px solid #dbdbdb;
-    background: #fff;
+    gap: 15px;
 
-    .title {
-        color: #4d5e80;
-        font-feature-settings: "clig" off, "liga" off;
-        font-family: Poppins;
-        font-size: 24px;
+    .products_price {
+      @include justify-content-between;
+      padding: 15px 0;
+
+      .price {
         font-weight: 600;
+      }
     }
 
-    .overall_content {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-
-        .products_price {
-            @include justify-content-between;
-            padding: 15px 0;
-
-            .price {
-                font-weight: 600;
-            }
-        }
-
-        .borderBottom {
-            border-bottom: 2px solid #edeff2;
-        }
+    .borderBottom {
+      border-bottom: 2px solid #edeff2;
     }
+  }
 
-    .buy {
-        @include element-center;
-        width: 100%;
-        height: 60px;
-        padding: 18px 20px;
-        gap: 10px;
-        border-radius: 8px;
-        background: #00adb5;
-        color: #fff;
-        font-family: Poppins;
-        font-size: 20px;
-        font-weight: 500;
-        cursor: pointer;
-    }
+  .buy {
+    @include element-center;
+    width: 100%;
+    height: 60px;
+    padding: 18px 20px;
+    gap: 10px;
+    border-radius: 8px;
+    background: #00adb5;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+  }
 }

@@ -91,7 +91,7 @@ export default createTheme({
     },
   },
   typography: {
-    fontFamily: "Poppins",
+    fontFamily: "sans-serif",
     h1: {
       fontSize: rem(50),
       fontWeight: 500,

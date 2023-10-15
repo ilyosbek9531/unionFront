@@ -9,8 +9,8 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    gap: rem(510);
-    border-bottom: 2px solid #DBDBDB;
+    width: 70%;
+    @include justify-content-between;
 
     .wrapper {
       display: flex;
@@ -25,14 +25,12 @@
       .count {
         padding-top: rem(15);
         color: #000;
-        font-family: Poppins;
         font-size: 18px;
         font-style: normal;
         font-weight: 400;
 
         span {
           color: #00adb5;
-          font-family: Poppins;
           font-size: 18px;
           font-style: normal;
           font-weight: 600;
@@ -41,35 +39,33 @@
       }
     }
 
-    .deleteAll{
-        padding-top: rem(15);
-        color: #DE1616;
-            font-family: Poppins;
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            cursor: pointer
+    .deleteAll {
+      padding-top: rem(15);
+      color: #de1616;
+      color: #de1616;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: normal;
+      margin-right: 20px;
     }
   }
-     .offerProducts {
-       @include direction-column;
-       gap: rem(20);
-       margin-top: rem(50);
-  
-       .title {
-         padding-left: 25px;
-         width: max-content;
-         color: #000;
-         font-family: Poppins;
-         font-size: 36px;
-         font-style: normal;
-         font-weight: 600;
-         line-height: normal;
-       }
-     }
+  .offerProducts {
+    @include direction-column;
+    gap: rem(20);
+    margin-top: rem(50);
+
+    .title {
+      padding-left: 25px;
+      width: max-content;
+      color: #000;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
 }
 
-.login{
-  @include element-center
+.login {
+  @include element-center;
 }
