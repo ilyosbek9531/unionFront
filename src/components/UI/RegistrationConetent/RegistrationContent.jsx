@@ -24,6 +24,7 @@ const RegistrationContent = () => {
   const { mutate: authRegisterPhone } = UseRegisterPhone({
     onSuccess: (res) => {
       localStorage.setItem("first_name", res.first_name);
+      localStorage.setItem("last_name", res.last_name)
       localStorage.setItem("user_id", res.user_id);
       localStorage.setItem("token", res.token);
       router.push("/");

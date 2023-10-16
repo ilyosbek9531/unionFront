@@ -8,16 +8,19 @@ const DeleverForm = () => {
 
   const first_name = typeof window !== "undefined" && localStorage.getItem("first_name");
   const phone_number = typeof window !== "undefined" && localStorage.getItem("phone_number");
+  const last_name = typeof window !== "undefined" && localStorage.getItem("last_name");
+  const fullName = `${last_name} ${first_name}`
 
   const {control, watch, setValue, formState: {errors}, handleSubmit} = useForm({
     defaultValues: {
-      fullname: first_name,
+      fullname: fullName,
       phoneNumber: phone_number,
+      address: "",
     }
   })
 
   return (
-    <form>
+    <form className={styles.delever}>
       <Input
             type="text"
             control={control}
@@ -41,8 +44,17 @@ const DeleverForm = () => {
           className={styles.numberInput}
         />
 
+        <Input 
+           type="text"
+           control={control}
+           name="address"
+           placeholder="Address"
+        />
 
-<MainButton text="Submit" variant="contained" type="submit"/>
+        <div className={styles.map_wrapper}>
+          
+        </div>
+
     </form>
   )
 }

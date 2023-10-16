@@ -3,7 +3,7 @@ import styles from "./CartAllPrice.module.scss";
 import Link from "next/link";
 import MainButton from "../MainButton/MainButton";
 
-const CartAllPrice = ({ totalPrice }) => {
+const CartAllPrice = ({ totalPrice, page }) => {
   return (
     <div className={styles.overall_wrapper}>
       <div className={styles.overall_content}>
@@ -19,7 +19,7 @@ const CartAllPrice = ({ totalPrice }) => {
           <h3 className={styles.price}>{totalPrice} sum</h3>
         </div>
       </div>
-      <Link href="/deliver">
+      <Link href="/delever">
         <MainButton variant="contained" text="Rasmiylashtirish" fullWidth />
       </Link>
     </div>

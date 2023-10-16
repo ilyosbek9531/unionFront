@@ -31,7 +31,7 @@ const CartContent = ({ userId, carts, count }) => {
             ))}
           </div>
           <span className={styles.price_wrapper}>
-            <CartAllPrice totalPrice={totalPrice} />
+            <CartAllPrice totalPrice={totalPrice} page={"/delever"}/>
           </span>
         </>
       ) : (

@@ -10,7 +10,7 @@ const DeleverContent = () => {
         <DeleverForm />
       </div>
       <span className={styles.price_wrapper}>
-        <CartAllPrice />
+        <CartAllPrice page={"/"}/>
       </span>
     </div>
   );

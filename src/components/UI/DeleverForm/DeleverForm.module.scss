@@ -1,0 +1,33 @@
+@import "styles/unit.scss";
+.delever{
+    display: flex;
+padding: 40px 30px;
+flex-direction: column;
+gap: 44px;
+border-radius: 10px;
+border: 1px solid #DBDBDB;
+background: #FFF;
+
+.numberInput {
+    display: flex;
+    padding: 18px 20px;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    font-size: 20px;
+    outline: none;
+
+    &:hover {
+    transition: border 0.25s linear;
+      border: 1px solid var(--primary-color);
+    }
+  }
+
+  .map_wrapper{
+    height: rem(512);
+    border-radius: 10px;
+    border: 1px solid #EBEBEB;
+  }
+}

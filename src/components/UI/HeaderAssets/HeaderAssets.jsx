@@ -8,6 +8,7 @@ import {
   LangUzIcon,
   LikeIcon,
   LogoutIcon,
+  LogoutModalIcon,
   ProfileIcon,
 } from "components/Icons";
 import Link from "next/link";
@@ -17,6 +18,8 @@ import Modal from "../Modal/Modal";
 import DrawerMenu from "../DrawerMenu/DrawerMenu";
 import { useGetFavouriteCount } from "services/favourites.service";
 import { useGetCartProducts } from "services/cart.service";
+import MainButton from "../MainButton/MainButton";
+import { OutlinedInput } from "@mui/material";
 
 const langs = [
   {
@@ -149,20 +152,26 @@ const HeaderAssets = () => {
       </div>
       <Modal open={openModal} handleClose={handleOpenClose}>
         <div className={styles.request_wrapper}>
-          <span onClick={handleOpenClose} className={styles.closeButton}>
-            <CloseButton />
-          </span>
+          <div>
+            <span className={styles.logoutIcon_wrapper}>
+            <LogoutModalIcon fill={"#00adb5"}/>
+            </span>
+            <span onClick={handleOpenClose} className={styles.closeButton}>
+              <CloseButton />
+            </span>
+          </div>
           <div className={styles.request_content}>
             <h3 className={styles.request_text}>
-              Are you sure to log out your account
+              Are you sure to log out your <br /> account ?
             </h3>
             <div className={styles.buttons}>
-              <span onClick={handleOpenClose} className={styles.noButton}>
-                No
-              </span>
-              <button onClick={handleLogOut} className={styles.yesButton}>
-                Yes
-              </button>
+                <MainButton variant="contained" text="No" onClick={handleOpenClose} sx={{width:"50%"}} />
+                <MainButton variant="outlined" text="Yes" onClick={handleLogOut} sx={{
+                  borderColor: "red",
+                  color:"#fff",
+                  width: "50%",
+                  backgroundColor:"red"
+                }}/>
             </div>
           </div>
         </div>
