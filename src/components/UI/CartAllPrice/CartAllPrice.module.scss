@@ -12,7 +12,7 @@
     color: #4d5e80;
     font-feature-settings: "clig" off, "liga" off;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 10px;
   }
 
@@ -23,6 +23,10 @@
     .products_price {
       @include justify-content-between;
       padding: 15px 0;
+
+      .product_content {
+        font-weight: 400;
+      }
 
       .price {
         font-weight: 600;

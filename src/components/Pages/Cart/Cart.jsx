@@ -51,6 +51,8 @@ const Cart = () => {
               carts={CartProducts?.datas}
               userId={userId}
               count={CartProducts?.count}
+              totalCount={totalCount}
+              page={"delever"}
             />
           </>
         ) : (

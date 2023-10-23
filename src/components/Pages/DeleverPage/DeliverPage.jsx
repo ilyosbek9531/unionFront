@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 import styles from "./DeleverPage.module.scss";
 import { Container } from "@mui/material";
 import CBreadCrumbs from "components/UI/CBreadCrumbs/CBreadCrumbs";
-import DeleverContent from 'components/UI/DeleverContent/DeleverContent';
+import DeleverContent from "components/UI/DeleverContent/DeleverContent";
 
 const breadcrumbItems = [
   {
@@ -10,24 +10,25 @@ const breadcrumbItems = [
     label: "Home",
   },
   {
-    link:"/",
+    link: "/cart",
     label: "Cart",
   },
   {
-    label:"Deliver"
-  }
-
+    label: "Delever",
+  },
 ];
 
 const DeliverPage = () => {
+
+
   return (
     <Container>
-    <div className={styles.deliver_wrapper}>
-      <CBreadCrumbs items={breadcrumbItems} />
-      <DeleverContent/>
-    </div>
-  </Container>
-  )
-}
+      <div className={styles.deliver_wrapper}>
+        <CBreadCrumbs items={breadcrumbItems} />
+        <DeleverContent />
+      </div>
+    </Container>
+  );
+};
 
-export default DeliverPage
+export default DeliverPage;

@@ -11,6 +11,7 @@ const cartService = {
     }),
   updateCartProduct: ({ id, params }) =>
     requestUnionToken.put(`cart_product/${id}`, params),
+  postDeleverProduct: (data) => requestUnionToken.post("/order", data),
 };
 
 export const useGetCartProducts = ({ queryParams }) => {
@@ -22,6 +23,13 @@ export const useGetCartProducts = ({ queryParams }) => {
 export const usePostCartProduct = (mutationSettings) => {
   return useMutation(
     (data) => cartService.postCartProduct(data),
+    mutationSettings
+  );
+};
+
+export const usePostDeleverProduct = (mutationSettings) => {
+  return useMutation(
+    (data) => cartService.postDeleverProduct(data),
     mutationSettings
   );
 };

@@ -4,7 +4,7 @@ import CartSingleProduct from "../CartSingleProduct/CartSingleProduct";
 import CartAllPrice from "../CartAllPrice/CartAllPrice";
 import RequirementLogin from "../RequirementLogin/RequirementLogin";
 
-const CartContent = ({ userId, carts, count }) => {
+const CartContent = ({ userId, carts, totalCount }) => {
   const totalPrice = carts?.reduce((acc, val) => {
     return acc + val.count * val.product_data.price;
   }, 0);
@@ -31,7 +31,7 @@ const CartContent = ({ userId, carts, count }) => {
             ))}
           </div>
           <span className={styles.price_wrapper}>
-            <CartAllPrice totalPrice={totalPrice} page={"/delever"}/>
+            <CartAllPrice totalCount={totalCount} totalPrice={totalPrice} page={"/delever"}/>
           </span>
         </>
       ) : (
