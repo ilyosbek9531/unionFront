@@ -50,14 +50,14 @@ const FilterRadioButtons = ({ control }) => {
     },
   });
 
-  const getCategory = categories?.datas.map((item) => {
+  const getCategory = categories?.datas?.map((item) => {
     return {
       label: item.name,
       value: item.id,
     };
   });
 
-  const getUniversity = unversities?.datas.map((item) => {
+  const getUniversity = unversities?.datas?.map((item) => {
     return {
       label: item.title,
       value: item.id,
